@@ -140,16 +140,64 @@ Program: Program Statement
 ## 词法分析
 
 * flex
+  * -i 使得大小不敏感
+
 
 
 
 ## 语法分析
 
 * bison
+* 输出语法树
+  * [(88条消息) printf 输出多个空格的方法_Shirley-hh的博客-CSDN博客_如何用printf输出空格](https://blog.csdn.net/weixin_52167761/article/details/117713837?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-1.highlightwordscore&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-1.highlightwordscore)
+
+* 如何输出token字符串
+  * 创建一个字符串数据
 
 
 
 
+
+
+## 语义分析
+
+* 导致段错误
+  * 忘记在语义动作中将 创建的节点地址给 $$
+  * TravelTree中 忘记break
+
+
+
+## 改写成CPP
+
+* 使用Windows+VS配置环境
+  * [(88条消息) [最全\]VS2017配置flex&bison_tankloverainbow的博客-CSDN博客_vs导入flex文件](https://blog.csdn.net/tankloverainbow/article/details/86653044)
+
+
+
+**问题：**
+
+* multiple definition of `token'; /tmp/ccPN24xx.o:(.bss+0x40): first defined here
+
+  * extern "C"{
+
+    * extern Token token
+    * }
+
+  * extern "C"{
+
+    ​    extern int **yylex**(void);
+
+    ​    int **yywrap**(void);  
+
+    ​    void **yyerror**(const char *str);
+
+    ​    extern FILE* yyin;
+
+    ​    extern FILE* yyout;      
+
+    }
+
+* win_flex_bison加入环境变量
 
 ## 借助Python的matplotlib
 
@@ -172,7 +220,6 @@ Program: Program Statement
 * #define YYSTEPE 
   * yylval使用
   * $也使用了
-
 * 写struct和union的时候，把变量和类型搞混了
 * va在这里是variable-argument(可变参数)的意思.这些宏定义在stdarg.h中,所以用到可变参数的程序应该包含这个头文件.
 * 遭遇段错误：**printf**("%d\n",$1->TokenType);
@@ -191,6 +238,8 @@ Program: Program Statement
 * 求表达式的值？
   * switch
   * 递归
+
+
 
 
 

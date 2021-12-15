@@ -69,7 +69,7 @@
 #line 1 "parser.y"
 
 
-#include"main.h"
+#include"main.hpp"
 
 // 初始化参数
 double Parameter = 0, start=0, end=0, step=0;
@@ -79,26 +79,35 @@ double rot = 0.0;
 double scale_x = 1.0;
 double scale_y = 1.0;
 
+
+
 // 定义变量
 
-#define YYSTYPE struct ExprNode *               //定义语义变量类型为树节点指针
+#define YYSTYPE struct ExprNode *               //定义语义变量类型为树节点指针,方便同时构造Expression的语法树
 
+// string TokenStr[100] = {"CONST_ID","FUNC","FOR", "T","FROM", "TO", "STEP", "DRAW", "ORIGIN", "SCALE", "ROT", "IS" ,"SIN", "COS", "TAN", "LN" ,"EXP" ,"SQRT", "COMMA", "L_BRACKET", "R_BRACKET", "SEMICO", "ERRTOKEN", "PLUS" "MINUS", "MUL", "DIV","UNSUB", "POWER"};
 
 // 声明变量
-extern unsigned char*yytext;
-extern struct Token token;      
+extern "C"{
+        extern struct Token token;  
+}
+    
 
 // 声明函数
+extern "C"{
+        extern int yylex(void);
+        int yywrap(void);   
+        void yyerror(const char *str);
+        extern FILE* yyin;
+        extern FILE* yyout;
+             
+}
 struct ExprNode * MakeExprNode(int opcode, ...);
 double GetExprValue(struct ExprNode * expr);
-void yyerror(char *str);
-extern int yylex(void);
-extern int yywrap(void);
-
-extern double pow(double, double);
+void TravelTree(struct ExprNode * root, int indent);
 
 
-#line 102 "y.tab.c"
+#line 111 "y.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -583,10 +592,10 @@ static const yytype_int8 yytranslate[] =
 
 #if YYDEBUG
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
-static const yytype_int8 yyrline[] =
+static const yytype_uint8 yyrline[] =
 {
-       0,    44,    44,    45,    48,    52,    56,    60,    68,    72,
-      76,    80,    84,    88,    92,    96,   100,   104,   108,   112
+       0,    51,    51,    52,    55,    68,    80,    91,   104,   108,
+     112,   120,   128,   136,   144,   152,   156,   160,   168,   172
 };
 #endif
 
@@ -1420,136 +1429,189 @@ yyreduce:
   switch (yyn)
     {
   case 4:
-#line 49 "parser.y"
+#line 56 "parser.y"
                     {
-                        
+                                start = GetExprValue(yyvsp[-10]);
+                                end = GetExprValue(yyvsp[-8]);
+                                step = GetExprValue(yyvsp[-6]);
+                                std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
+                                printf("\nrot = %f\n",rot);
+                                printf("\nstart = %f, end = %f,step = %f\n", start, end, step);                            
+                                printf("\norigin_x = %f, origin_y = %f\n",origin_x,origin_y);
+                                printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
+                                std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
+
                     }
-#line 1428 "y.tab.c"
+#line 1446 "y.tab.c"
     break;
 
   case 5:
-#line 53 "parser.y"
+#line 69 "parser.y"
                     {
+                            origin_x = GetExprValue(yyvsp[-3]);
+                            origin_y = GetExprValue(yyvsp[-1]);
+                            std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
+                            printf("\nrot = %f\n",rot);
+                            printf("\nstart = %f, end = %f,step = %f\n", start, end, step);                            
+                            printf("\norigin_x = %f, origin_y = %f\n",origin_x,origin_y);
+                            printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
+                            std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
 
                     }
-#line 1436 "y.tab.c"
+#line 1462 "y.tab.c"
     break;
 
   case 6:
-#line 57 "parser.y"
+#line 81 "parser.y"
                     {
-
+                            scale_x = GetExprValue(yyvsp[-3]);
+                            scale_y = GetExprValue(yyvsp[-1]);
+                            std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
+                            printf("\nrot = %f\n",rot);
+                            printf("\nstart = %f, end = %f,step = %f\n", start, end, step);                            
+                            printf("\norigin_x = %f, origin_y = %f\n",origin_x,origin_y);
+                            printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
+                            std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
                     }
-#line 1444 "y.tab.c"
-    break;
-
-  case 7:
-#line 61 "parser.y"
-                    {
-                        rot = GetExprValue(yyvsp[0]);
-                        printf("%f\n",rot);
-                    }
-#line 1453 "y.tab.c"
-    break;
-
-  case 8:
-#line 69 "parser.y"
-                {
-                        yyval = MakeExprNode(T);
-                }
-#line 1461 "y.tab.c"
-    break;
-
-  case 9:
-#line 73 "parser.y"
-                {
-                        yyval = MakeExprNode(CONST_ID, token.value);
-                }
-#line 1469 "y.tab.c"
-    break;
-
-  case 10:
-#line 77 "parser.y"
-                {
-                        yyval = MakeExprNode(PLUS, yyvsp[-2], yyvsp[0]);
-                }
 #line 1477 "y.tab.c"
     break;
 
+  case 7:
+#line 92 "parser.y"
+                    {
+                        rot = GetExprValue(yyvsp[0]);
+                            std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
+                            printf("\nrot = %f\n",rot);
+                            printf("\nstart = %f, end = %f,step = %f\n", start, end, step);                            
+                            printf("\norigin_x = %f, origin_y = %f\n",origin_x,origin_y);
+                            printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
+                            std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
+                    }
+#line 1491 "y.tab.c"
+    break;
+
+  case 8:
+#line 105 "parser.y"
+                {
+                        yyval = MakeExprNode(T);
+                }
+#line 1499 "y.tab.c"
+    break;
+
+  case 9:
+#line 109 "parser.y"
+                {
+                        yyval = MakeExprNode(CONST_ID, token.value);
+                }
+#line 1507 "y.tab.c"
+    break;
+
+  case 10:
+#line 113 "parser.y"
+                {
+                        yyval = MakeExprNode(PLUS, yyvsp[-2], yyvsp[0]);
+                        std::cout<<"\n————————————————————————————tree————————————————————————————"<<std::endl;
+                        int indent=-4;
+                        TravelTree(yyval, indent);
+                        std::cout<<"\n————————————————————————————————————————————————————————————"<<std::endl;
+                }
+#line 1519 "y.tab.c"
+    break;
+
   case 11:
-#line 81 "parser.y"
+#line 121 "parser.y"
                 {
                         yyval = MakeExprNode(MINUS, yyvsp[-2], yyvsp[0]);
+                        std::cout<<"\n————————————————————————————tree————————————————————————————"<<std::endl;
+                        int indent=-4;
+                        TravelTree(yyval, indent);
+                        std::cout<<"\n————————————————————————————————————————————————————————————"<<std::endl;
                 }
-#line 1485 "y.tab.c"
+#line 1531 "y.tab.c"
     break;
 
   case 12:
-#line 85 "parser.y"
+#line 129 "parser.y"
                 {
                         yyval = MakeExprNode(MUL, yyvsp[-2], yyvsp[0]);
+                        std::cout<<"\n————————————————————————————tree————————————————————————————"<<std::endl;
+                        int indent=-4;
+                        TravelTree(yyval, indent);
+                        std::cout<<"\n————————————————————————————————————————————————————————————"<<std::endl;
                 }
-#line 1493 "y.tab.c"
+#line 1543 "y.tab.c"
     break;
 
   case 13:
-#line 89 "parser.y"
+#line 137 "parser.y"
                 {
                         yyval = MakeExprNode(DIV, yyvsp[-2], yyvsp[0]);
+                        std::cout<<"\n————————————————————————————tree————————————————————————————"<<std::endl;
+                        int indent=-4;
+                        TravelTree(yyval, indent);
+                        std::cout<<"\n————————————————————————————————————————————————————————————"<<std::endl;
                 }
-#line 1501 "y.tab.c"
+#line 1555 "y.tab.c"
     break;
 
   case 14:
-#line 93 "parser.y"
+#line 145 "parser.y"
                 {
                         yyval = MakeExprNode(POWER, yyvsp[-2], yyvsp[0]);
+                        std::cout<<"\n————————————————————————————tree————————————————————————————"<<std::endl;
+                        int indent=-4;
+                        TravelTree(yyval, indent);
+                        std::cout<<"\n————————————————————————————————————————————————————————————"<<std::endl;
                 }
-#line 1509 "y.tab.c"
+#line 1567 "y.tab.c"
     break;
 
   case 15:
-#line 97 "parser.y"
+#line 153 "parser.y"
                 {
                         yyval = yyvsp[-1];
                 }
-#line 1517 "y.tab.c"
+#line 1575 "y.tab.c"
     break;
 
   case 16:
-#line 101 "parser.y"
+#line 157 "parser.y"
                 {
                         yyval = yyvsp[0];
                 }
-#line 1525 "y.tab.c"
+#line 1583 "y.tab.c"
     break;
 
   case 17:
-#line 105 "parser.y"
+#line 161 "parser.y"
                 {
-                        MakeExprNode(MINUS, MakeExprNode(CONST_ID, 0.0),yyvsp[0]);
+                        yyval = MakeExprNode(MINUS, MakeExprNode(CONST_ID, 0.0),yyvsp[0]);
+                        std::cout<<"\n————————————————————————————tree————————————————————————————"<<std::endl;
+                        int indent=0;
+                        TravelTree(yyval, indent);
+                        std::cout<<"\n————————————————————————————————————————————————————————————"<<std::endl;
                 }
-#line 1533 "y.tab.c"
+#line 1595 "y.tab.c"
     break;
 
   case 18:
-#line 109 "parser.y"
+#line 169 "parser.y"
                 {
-                        MakeExprNode(FUNC, yyvsp[-1], token.FuncPtr);
+                        yyval = MakeExprNode(FUNC, yyvsp[-1], token.FuncPtr);
                 }
-#line 1541 "y.tab.c"
+#line 1603 "y.tab.c"
     break;
 
   case 19:
-#line 113 "parser.y"
+#line 173 "parser.y"
                 {
                         yyerror("error token\n");
                 }
-#line 1549 "y.tab.c"
+#line 1611 "y.tab.c"
     break;
 
 
-#line 1553 "y.tab.c"
+#line 1615 "y.tab.c"
 
       default: break;
     }
@@ -1781,20 +1843,38 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 119 "parser.y"
+#line 179 "parser.y"
 
 
-int main(){
-    yyparse();
+int main(int argc, char ** argv){
+	int c,j=0;
+	if (argc>=2){
+	  if ((yyin = fopen(argv[1], "r")) == NULL){
+	    printf("Can't open file %s\n", argv[1]);
+	    return 1;
+	  }
+	  if (argc>=3){
+	    yyout=fopen(argv[2], "w");
+	  }
+	}
+
+	
+        yyparse();	
+        
+        if(argc>=2){
+	  fclose(yyin);
+	  if (argc>=3) fclose(yyout);
+	}
+        return 0;
 }
     // 错误处理
-void yyerror(char *str){
-    fprintf(stderr,"error:%s\n",str);
+void yyerror(const char *str){
+    std::cerr<< str <<std::endl;
 }
 
 struct ExprNode * MakeExprNode(int opcode, ...){
     va_list ArgPtr;
-    struct ExprNode *ExprPtr = malloc(sizeof(struct ExprNode));
+    struct ExprNode *ExprPtr = new struct ExprNode;
     ExprPtr->OpCode = opcode;
     va_start(ArgPtr, opcode);
     switch(opcode){
@@ -1839,7 +1919,30 @@ double GetExprValue(struct ExprNode * expr){
                         return pow(GetExprValue(expr->Content.CaseOperator.Left), GetExprValue(expr->Content.CaseOperator.Right));
                         break;   
                 case FUNC:
-                        return (*expr->Content.CaseFunc.MathFuncPtr)(GetExprValue(expr->Content.CaseFunc.Child));
-                        break;      
+                        return (* expr->Content.CaseFunc.MathFuncPtr)(GetExprValue(expr->Content.CaseFunc.Child));
+                        break;
+                default:
+                        return 0.0;      
+        }
+}
+
+void TravelTree(struct ExprNode * root, int indent){
+        indent += 4;
+        switch(root->OpCode){
+                case CONST_ID:
+                        printf("%*s%f\n",indent," ",root->Content.CaseConst);
+                        break;
+                case FUNC:
+                        printf("%*s%p\n",indent," ",root->Content.CaseFunc.MathFuncPtr);
+                        TravelTree(root->Content.CaseFunc.Child, indent);
+                        break;
+                case T:
+                        printf("%*sT\n",indent," ");
+                        break;
+                default:
+                        printf("%*s%d\n",indent," ",root->OpCode);
+                        TravelTree(root->Content.CaseOperator.Left, indent);
+                        TravelTree(root->Content.CaseOperator.Right, indent);
+                        break;
         }
 }

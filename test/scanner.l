@@ -1,15 +1,16 @@
 %{
     /* 定义声明*/
-#include"main.h"
+#include"main.hpp"
 #include"y.tab.h"
 unsigned int LineNo;        // 记录行号
 
     // 定义变量
 struct Token token;
 
-    // 定义函数
-int yywrap(void){
-    return 1;
+    // 声明函数
+extern "C"{
+    int yywrap(void);
+    int yylex(void);
 }
 
 %}
@@ -31,35 +32,35 @@ comments    "//"|"--"
 
 {comments}                      {BEGIN comment_entry;}
 {ws}                            {;}
-{newline}                       {LineNo++;}
+{newline}                       {LineNo++; printf("\n");}
 
     /* 关键词 */
-"ORIGIN"                        {return (ORIGIN);}
-"SCALE"                         {return (SCALE);}
-"ROT"                           {return (ROT);}
-"IS"                            {return (IS);}
-"FOR"                           {return (FOR);}
-"FROM"                          {return (FROM);}
-"TO"                            {return (TO);}
-"STEP"                          {return (STEP);}
-"DRAW"                          {return (DRAW);}
+"ORIGIN"                        {printf("(ORIGIN,) "); return (ORIGIN);}
+"SCALE"                         {printf("(SCALE,) "); return (SCALE);}
+"ROT"                           {printf("(ROT,) ") ; return (ROT);}
+"IS"                            {printf("(IS,) ") ; return (IS);}
+"FOR"                           {printf("(FOR,) "); return (FOR);}
+"FROM"                          {printf("(FROM,)"); return (FROM);}
+"TO"                            {printf("(TO,) "); return (TO);}
+"STEP"                          {printf("(STEP,) "); return (STEP);}
+"DRAW"                          {printf("(DRAW,) "); return (DRAW);}
 
     /* 参数 */
-"T"                             {return (T);}
+"T"                             {printf("(T,) "); return (T);}
 
     /* 函数 */
-"SIN"                           {token.type=FUNC; token.FuncPtr=sin; return (FUNC);}
-"COS"                           {token.type=FUNC; token.FuncPtr=cos; return (FUNC);}
-"TAN"                           {token.type=FUNC; token.FuncPtr=tan; return (FUNC);}
-"LN"                            {token.type=FUNC; token.FuncPtr=log; return (FUNC);}
-"EXP"                           {token.type=FUNC; token.FuncPtr=exp; return (FUNC);}
-"SQRT"                          {token.type=FUNC; token.FuncPtr=sqrt; return (FUNC);}
+"SIN"                           {printf("(FUNC, SIN) "); token.type=FUNC; token.FuncPtr=sin; return (FUNC);}
+"COS"                           {printf("(FUNC, COS) "); token.type=FUNC; token.FuncPtr=cos; return (FUNC);}
+"TAN"                           {printf("(FUNC, TAN) "); token.type=FUNC; token.FuncPtr=tan; return (FUNC);}
+"LN"                            {printf("(FUNC, LN) "); token.type=FUNC; token.FuncPtr=log; return (FUNC);}
+"EXP"                           {printf("(FUNC, EXP) "); token.type=FUNC; token.FuncPtr=exp; return (FUNC);}
+"SQRT"                          {printf("(FUNC, SQRT) "); token.type=FUNC; token.FuncPtr=sqrt; return (FUNC);}
 
 
     /* 常数 */
-{number}                    {token.type = CONST_ID; token.value = atof(yytext); return (CONST_ID);}
-"PI"                        {token.type = CONST_ID; token.value = 3.1415926; return (CONST_ID);}
-"E"                         {token.type = CONST_ID; token.value = 2.7; return (CONST_ID);}
+{number}                    {token.type = CONST_ID; token.value = atof(yytext); printf("(CONST_ID, %f) ",token.value); return (CONST_ID);}
+"PI"                        {token.type = CONST_ID; token.value = 3.1415926; printf("(CONST_ID, %f) ",token.value); return (CONST_ID);}
+"E"                         {token.type = CONST_ID; token.value = 2.7; printf("(CONST_ID, %f) ",token.value); return (CONST_ID);}
 
     /* 分隔符 */
 ";"                         {return (SEMICO);}
@@ -68,11 +69,11 @@ comments    "//"|"--"
 ","                         {return (COMMA);}
 
     /* 运算符 */
-"**"                        {return (POWER);}
-"+"                         {return (PLUS);}
-"-"                         {return (MINUS);}
-"*"                         {return (MUL);}
-"/"                         {return (DIV);}
+"**"                        {printf("(POWER) "); return (POWER);}
+"+"                         {printf("(PLUS) "); return (PLUS);}
+"-"                         {printf("(MINUS) "); return (MINUS);}
+"*"                         {printf("(MUL) "); return (MUL);}
+"/"                         {printf("(DIV) "); return (DIV);}
 
 (" "|\t|\n|\r|\f|\v)+       {;}
 
@@ -84,21 +85,6 @@ comments    "//"|"--"
 
 %%
 
-double sin(double num){
-    return 1;
-}
-double cos(double num){
-    return 1;
-}
-double tan(double num){
-    return 1;
-}
-double log(double num){
-    return 1;
-}
-double exp(double num){
-    return 1;
-}
-double sqrt(double num){
+int yywrap(void){
     return 1;
 }
