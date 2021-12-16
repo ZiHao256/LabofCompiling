@@ -72,7 +72,7 @@
 #include"main.hpp"
 
 // 初始化参数
-double Parameter = 0, start=0, end=0, step=0;
+double Parameter = 0, draw_start=0, draw_end=0, draw_step=0;
 double origin_x = 0.0;
 double origin_y = 0.0;
 double rot = 0.0;
@@ -105,9 +105,10 @@ extern "C"{
 struct ExprNode * MakeExprNode(int opcode, ...);
 double GetExprValue(struct ExprNode * expr);
 void TravelTree(struct ExprNode * root, int indent);
+void DrawLoop(double draw_start, double draw_end, double draw_step, struct ExprNode* HorPtr, struct ExprNode* VerPtr);
 
 
-#line 111 "y.tab.cpp"
+#line 112 "y.tab.cpp"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -564,8 +565,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    51,    51,    52,    55,    68,    80,    91,   104,   108,
-     112,   120,   128,   136,   144,   152,   156,   160,   168,   172
+       0,    52,    52,    53,    56,    72,    84,    95,   108,   112,
+     116,   124,   132,   140,   148,   156,   160,   164,   172,   176
 };
 #endif
 
@@ -1399,85 +1400,88 @@ yyreduce:
   switch (yyn)
     {
   case 4:
-#line 56 "parser.y"
+#line 57 "parser.y"
                     {
-                                start = GetExprValue(yyvsp[-10]);
-                                end = GetExprValue(yyvsp[-8]);
-                                step = GetExprValue(yyvsp[-6]);
+                                draw_start = GetExprValue(yyvsp[-10]);
+                                draw_end = GetExprValue(yyvsp[-8]);
+                                draw_step = GetExprValue(yyvsp[-6]);
                                 std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
                                 printf("\nrot = %f\n",rot);
-                                printf("\nstart = %f, end = %f,step = %f\n", start, end, step);                            
+                                printf("\ndraw_start = %f, draw_end = %f,draw_step = %f\n", draw_start, draw_end, draw_step);                            
                                 printf("\norigin_x = %f, origin_y = %f\n",origin_x,origin_y);
                                 printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
                                 std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
-
+                                std::cout<<"\n——————————————————————开始绘画——————————————————————————"<<std::endl;
+                                DrawLoop(draw_start, draw_end, draw_step, yyvsp[-3], yyvsp[-1]);
+                                std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
+                                
                     }
-#line 1416 "y.tab.cpp"
+#line 1420 "y.tab.cpp"
     break;
 
   case 5:
-#line 69 "parser.y"
+#line 73 "parser.y"
                     {
                             origin_x = GetExprValue(yyvsp[-3]);
                             origin_y = GetExprValue(yyvsp[-1]);
                             std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
                             printf("\nrot = %f\n",rot);
-                            printf("\nstart = %f, end = %f,step = %f\n", start, end, step);                            
+                            printf("\ndraw_start = %f, draw_end = %f,draw_step = %f\n", draw_start, draw_end, draw_step);                            
                             printf("\norigin_x = %f, origin_y = %f\n",origin_x,origin_y);
                             printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
                             std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
 
                     }
-#line 1432 "y.tab.cpp"
+#line 1436 "y.tab.cpp"
     break;
 
   case 6:
-#line 81 "parser.y"
+#line 85 "parser.y"
                     {
                             scale_x = GetExprValue(yyvsp[-3]);
                             scale_y = GetExprValue(yyvsp[-1]);
                             std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
                             printf("\nrot = %f\n",rot);
-                            printf("\nstart = %f, end = %f,step = %f\n", start, end, step);                            
+                            printf("\ndraw_start = %f, draw_end = %f,draw_step = %f\n", draw_start, draw_end, draw_step);                            
                             printf("\norigin_x = %f, origin_y = %f\n",origin_x,origin_y);
                             printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
                             std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
                     }
-#line 1447 "y.tab.cpp"
+#line 1451 "y.tab.cpp"
     break;
 
   case 7:
-#line 92 "parser.y"
+#line 96 "parser.y"
                     {
                         rot = GetExprValue(yyvsp[0]);
                             std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
                             printf("\nrot = %f\n",rot);
-                            printf("\nstart = %f, end = %f,step = %f\n", start, end, step);                            
+                            printf("\ndraw_start = %f, draw_end = %f,draw_step = %f\n", draw_start, draw_end, draw_step);                            
                             printf("\norigin_x = %f, origin_y = %f\n",origin_x,origin_y);
                             printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
                             std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
                     }
-#line 1461 "y.tab.cpp"
+#line 1465 "y.tab.cpp"
     break;
 
   case 8:
-#line 105 "parser.y"
+#line 109 "parser.y"
                 {
                         yyval = MakeExprNode(T);
                 }
-#line 1469 "y.tab.cpp"
+#line 1473 "y.tab.cpp"
     break;
 
   case 9:
-#line 109 "parser.y"
+#line 113 "parser.y"
                 {
                         yyval = MakeExprNode(CONST_ID, token.value);
                 }
-#line 1477 "y.tab.cpp"
+#line 1481 "y.tab.cpp"
     break;
 
   case 10:
-#line 113 "parser.y"
+#line 117 "parser.y"
                 {
                         yyval = MakeExprNode(PLUS, yyvsp[-2], yyvsp[0]);
                         std::cout<<"\n————————————————————————————tree————————————————————————————"<<std::endl;
@@ -1485,11 +1489,11 @@ yyreduce:
                         TravelTree(yyval, indent);
                         std::cout<<"\n————————————————————————————————————————————————————————————"<<std::endl;
                 }
-#line 1489 "y.tab.cpp"
+#line 1493 "y.tab.cpp"
     break;
 
   case 11:
-#line 121 "parser.y"
+#line 125 "parser.y"
                 {
                         yyval = MakeExprNode(MINUS, yyvsp[-2], yyvsp[0]);
                         std::cout<<"\n————————————————————————————tree————————————————————————————"<<std::endl;
@@ -1497,11 +1501,11 @@ yyreduce:
                         TravelTree(yyval, indent);
                         std::cout<<"\n————————————————————————————————————————————————————————————"<<std::endl;
                 }
-#line 1501 "y.tab.cpp"
+#line 1505 "y.tab.cpp"
     break;
 
   case 12:
-#line 129 "parser.y"
+#line 133 "parser.y"
                 {
                         yyval = MakeExprNode(MUL, yyvsp[-2], yyvsp[0]);
                         std::cout<<"\n————————————————————————————tree————————————————————————————"<<std::endl;
@@ -1509,11 +1513,11 @@ yyreduce:
                         TravelTree(yyval, indent);
                         std::cout<<"\n————————————————————————————————————————————————————————————"<<std::endl;
                 }
-#line 1513 "y.tab.cpp"
+#line 1517 "y.tab.cpp"
     break;
 
   case 13:
-#line 137 "parser.y"
+#line 141 "parser.y"
                 {
                         yyval = MakeExprNode(DIV, yyvsp[-2], yyvsp[0]);
                         std::cout<<"\n————————————————————————————tree————————————————————————————"<<std::endl;
@@ -1521,11 +1525,11 @@ yyreduce:
                         TravelTree(yyval, indent);
                         std::cout<<"\n————————————————————————————————————————————————————————————"<<std::endl;
                 }
-#line 1525 "y.tab.cpp"
+#line 1529 "y.tab.cpp"
     break;
 
   case 14:
-#line 145 "parser.y"
+#line 149 "parser.y"
                 {
                         yyval = MakeExprNode(POWER, yyvsp[-2], yyvsp[0]);
                         std::cout<<"\n————————————————————————————tree————————————————————————————"<<std::endl;
@@ -1533,27 +1537,27 @@ yyreduce:
                         TravelTree(yyval, indent);
                         std::cout<<"\n————————————————————————————————————————————————————————————"<<std::endl;
                 }
-#line 1537 "y.tab.cpp"
+#line 1541 "y.tab.cpp"
     break;
 
   case 15:
-#line 153 "parser.y"
+#line 157 "parser.y"
                 {
                         yyval = yyvsp[-1];
                 }
-#line 1545 "y.tab.cpp"
+#line 1549 "y.tab.cpp"
     break;
 
   case 16:
-#line 157 "parser.y"
+#line 161 "parser.y"
                 {
                         yyval = yyvsp[0];
                 }
-#line 1553 "y.tab.cpp"
+#line 1557 "y.tab.cpp"
     break;
 
   case 17:
-#line 161 "parser.y"
+#line 165 "parser.y"
                 {
                         yyval = MakeExprNode(MINUS, MakeExprNode(CONST_ID, 0.0),yyvsp[0]);
                         std::cout<<"\n————————————————————————————tree————————————————————————————"<<std::endl;
@@ -1561,27 +1565,27 @@ yyreduce:
                         TravelTree(yyval, indent);
                         std::cout<<"\n————————————————————————————————————————————————————————————"<<std::endl;
                 }
-#line 1565 "y.tab.cpp"
+#line 1569 "y.tab.cpp"
     break;
 
   case 18:
-#line 169 "parser.y"
+#line 173 "parser.y"
                 {
                         yyval = MakeExprNode(FUNC, yyvsp[-1], token.FuncPtr);
                 }
-#line 1573 "y.tab.cpp"
+#line 1577 "y.tab.cpp"
     break;
 
   case 19:
-#line 173 "parser.y"
+#line 177 "parser.y"
                 {
                         yyerror("error token\n");
                 }
-#line 1581 "y.tab.cpp"
+#line 1585 "y.tab.cpp"
     break;
 
 
-#line 1585 "y.tab.cpp"
+#line 1589 "y.tab.cpp"
 
       default: break;
     }
@@ -1813,7 +1817,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 179 "parser.y"
+#line 183 "parser.y"
 
 
 int main(int argc, char ** argv){
@@ -1915,4 +1919,9 @@ void TravelTree(struct ExprNode * root, int indent){
                         TravelTree(root->Content.CaseOperator.Right, indent);
                         break;
         }
+}
+
+void DrawLoop(double draw_start, double draw_end, double draw_step, struct ExprNode* HorPtr, struct ExprNode* VerPtr){
+        int n = (int) ((draw_end-draw_start)/(draw_step));
+        cout<<"\n共"<<n<<"个点"<<endl;
 }

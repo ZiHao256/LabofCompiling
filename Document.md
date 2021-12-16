@@ -168,6 +168,7 @@ Program: Program Statement
 ## 绘图
 
 * 变换顺序总是：比例变换→旋转变换→平移变换 
+* 用vector+plot画图
 
 
 

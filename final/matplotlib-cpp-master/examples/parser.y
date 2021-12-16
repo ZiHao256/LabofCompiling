@@ -3,7 +3,7 @@
 #include"main.hpp"
 
 // 初始化参数
-double Parameter = 0, start=0, end=0, step=0;
+double Parameter = 0, draw_start=0, draw_end=0, draw_step=0;
 double origin_x = 0.0;
 double origin_y = 0.0;
 double rot = 0.0;
@@ -36,6 +36,7 @@ extern "C"{
 struct ExprNode * MakeExprNode(int opcode, ...);
 double GetExprValue(struct ExprNode * expr);
 void TravelTree(struct ExprNode * root, int indent);
+void DrawLoop(double draw_start, double draw_end, double draw_step, struct ExprNode* HorPtr, struct ExprNode* VerPtr);
 
 %}
 
@@ -54,16 +55,19 @@ void TravelTree(struct ExprNode * root, int indent);
     
     Statement: FOR T FROM Expression TO Expression STEP Expression DRAW L_BRACKET Expression COMMA Expression R_BRACKET
                     {
-                                start = GetExprValue($4);
-                                end = GetExprValue($6);
-                                step = GetExprValue($8);
+                                draw_start = GetExprValue($4);
+                                draw_end = GetExprValue($6);
+                                draw_step = GetExprValue($8);
                                 std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
                                 printf("\nrot = %f\n",rot);
-                                printf("\nstart = %f, end = %f,step = %f\n", start, end, step);                            
+                                printf("\ndraw_start = %f, draw_end = %f,draw_step = %f\n", draw_start, draw_end, draw_step);                            
                                 printf("\norigin_x = %f, origin_y = %f\n",origin_x,origin_y);
                                 printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
                                 std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
-
+                                std::cout<<"\n——————————————————————开始绘画——————————————————————————"<<std::endl;
+                                DrawLoop(draw_start, draw_end, draw_step, $11, $13);
+                                std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
+                                
                     }
             | ORIGIN IS L_BRACKET Expression COMMA Expression R_BRACKET
                     {
@@ -71,7 +75,7 @@ void TravelTree(struct ExprNode * root, int indent);
                             origin_y = GetExprValue($6);
                             std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
                             printf("\nrot = %f\n",rot);
-                            printf("\nstart = %f, end = %f,step = %f\n", start, end, step);                            
+                            printf("\ndraw_start = %f, draw_end = %f,draw_step = %f\n", draw_start, draw_end, draw_step);                            
                             printf("\norigin_x = %f, origin_y = %f\n",origin_x,origin_y);
                             printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
                             std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
@@ -83,7 +87,7 @@ void TravelTree(struct ExprNode * root, int indent);
                             scale_y = GetExprValue($6);
                             std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
                             printf("\nrot = %f\n",rot);
-                            printf("\nstart = %f, end = %f,step = %f\n", start, end, step);                            
+                            printf("\ndraw_start = %f, draw_end = %f,draw_step = %f\n", draw_start, draw_end, draw_step);                            
                             printf("\norigin_x = %f, origin_y = %f\n",origin_x,origin_y);
                             printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
                             std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
@@ -93,7 +97,7 @@ void TravelTree(struct ExprNode * root, int indent);
                         rot = GetExprValue($3);
                             std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
                             printf("\nrot = %f\n",rot);
-                            printf("\nstart = %f, end = %f,step = %f\n", start, end, step);                            
+                            printf("\ndraw_start = %f, draw_end = %f,draw_step = %f\n", draw_start, draw_end, draw_step);                            
                             printf("\norigin_x = %f, origin_y = %f\n",origin_x,origin_y);
                             printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
                             std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
@@ -277,4 +281,10 @@ void TravelTree(struct ExprNode * root, int indent){
                         TravelTree(root->Content.CaseOperator.Right, indent);
                         break;
         }
+}
+
+void DrawLoop(double draw_start, double draw_end, double draw_step, struct ExprNode* HorPtr, struct ExprNode* VerPtr){
+        int n = (int) ((draw_end-draw_start)/(draw_step));
+        cout<<"\n共"<<n<<"个点"<<endl;
+        
 }
