@@ -12,7 +12,7 @@ int main(){
     for (int i=0; i<4; i++){
         int t;
         cin>>t;
-        if(t){
+        if(t == 520){
             drawHeart();
         }else{
             drawBasic();
@@ -32,7 +32,7 @@ void drawHeart(){
 		y.at(i) = 13*cos(t) - 5*cos(2*t) - 2*cos(3*t) - cos(4*t);
 	}
 	plt::plot(x, y, "r-", x, [](double d) { return 12.5+abs(sin(d)); }, "k-");
-    string filename = "./heart.png";
+    string filename = "./picture/heart.png";
     std::cout << "Saving result to " << filename << std::endl;;
     plt::save(filename);
 }
@@ -68,7 +68,7 @@ void drawBasic(){
     plt::legend();
 
     // save figure
-    string filename = "./basic.png";
+    string filename = "./picture/basic.png";
     std::cout << "Saving result to " << filename << std::endl;;
     plt::save(filename);
 }

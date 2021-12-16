@@ -169,8 +169,27 @@ Program: Program Statement
 
 * 变换顺序总是：比例变换→旋转变换→平移变换 
 * 用vector+plot画图
+* C++特性：引用传值
+* 粗心：忘加; 导致error提示的地方不对
 
 
+
+**问题：**
+
+* terminate called after throwing an instance of 'std::out_of_range'
+    what():  vector::_M_range_check: __n (which is 200) >= this->size() (which is 200)
+  Aborted
+  * n+1个元素空间
+
+
+
+## 错误处理
+
+* 行号：全局变量
+
+
+
+## 会用CMake
 
 ## 改写成CPP
 
@@ -281,5 +300,4 @@ Program: Program Statement
 
 
 
-# 基于 Python
 
