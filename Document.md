@@ -165,14 +165,16 @@ Program: Program Statement
   * 忘记在语义动作中将 创建的节点地址给 $$
   * TravelTree中 忘记break
 
+## 绘图
+
+* 变换顺序总是：比例变换→旋转变换→平移变换 
+
 
 
 ## 改写成CPP
 
 * 使用Windows+VS配置环境
   * [(88条消息) [最全\]VS2017配置flex&bison_tankloverainbow的博客-CSDN博客_vs导入flex文件](https://blog.csdn.net/tankloverainbow/article/details/86653044)
-
-
 
 **问题：**
 
@@ -197,11 +199,45 @@ Program: Program Statement
 
     }
 
-* win_flex_bison加入环境变量
+
+## WSL2下
+
+* xrdp
+* xfce4
+
+
+
+* 运行：`sudo /etc/init.d/xrdp start `
+  * `ip a`
+
+172.30.0.1
+
+
+
+**安装python3.8和pip3**
+
+* 依赖问题：
+  * ==注意换源的ubuntu版本==
+  * 不要找到一个换源方法就复制粘贴
+
+**问题：**
+
+* display 0
+  * win远程连接的凭证是wsl2中的root用户和密码
+  * 忘记了WSL2中root用户的密码
+* hello.py:12: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
+    plt.show()
+  * python的绘图库，比如常用的matplotlib，在WSL中会默认使用Agg绘图后端。这是一个哑终端，不做GUI输出，但是可以保存绘制的图形到文件。
+  * 使用PyQt [(88条消息) 解决“UserWarning: Matplotlib is currently using agg, which is a non-GUI backend....”_lk66lk的博客-CSDN博客](https://blog.csdn.net/lk66lk/article/details/117756479)
+
+
 
 ## 借助Python的matplotlib
 
-
+* 直接使用matplotlib-cpp项目
+* 学会使用CMake
+  * 只能编译连接cpp
+  * [(88条消息) CMAKE学习——编译多个文件 & 多个目录_dyyzlzc的博客-CSDN博客_cmake多目录编译](https://blog.csdn.net/dyyzlzc/article/details/105189374)
 
 
 
