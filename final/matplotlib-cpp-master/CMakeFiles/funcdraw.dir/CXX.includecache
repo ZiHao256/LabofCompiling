@@ -17,14 +17,20 @@ stdlib.h
 -
 inttypes.h
 -
-main.hpp
-/mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/examples/main.hpp
+semantics.hpp
+/mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/examples/semantics.hpp
 y.tab.hpp
 /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/examples/y.tab.hpp
 unistd.h
 -
 
-/mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/examples/main.hpp
+/mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/examples/semantics.cpp
+semantics.hpp
+/mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/examples/semantics.hpp
+y.tab.hpp
+/mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/examples/y.tab.hpp
+
+/mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/examples/semantics.hpp
 iostream
 -
 stdio.h
@@ -43,8 +49,8 @@ vector
 /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/matplotlibcpp.h
 
 /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/examples/y.tab.cpp
-main.hpp
-/mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/examples/main.hpp
+semantics.hpp
+/mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/examples/semantics.hpp
 limits.h
 -
 stdint.h

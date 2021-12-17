@@ -1,8 +1,8 @@
 %{
     /* 定义声明*/
 #include"main.hpp"
-#include"y.tab.h"
-unsigned int LineNo;        // 记录行号
+#include"y.tab.hpp"
+unsigned int LineNo = 1;        // 记录行号
 
     // 定义变量
 struct Token token;
@@ -20,7 +20,7 @@ extern "C"{
 number      [0-9]+(\.[0-9]*)?
 ws          [\t]+
 newline     \n
-comments    "//"|"--"
+comments    "//"|"--"[^\n]*
 
 %%
   /* 第二部分是词法规则部分。 */
@@ -30,7 +30,7 @@ comments    "//"|"--"
    * 正规式和动作之间要用空白分割。
    */
 
-{comments}                      {BEGIN comment_entry;}
+{comments}                      {BEGIN comment_entry; printf("\n————————————————————————————注释————————————————————————————\n"); printf("%s",yytext);printf("\n————————————————————————————————————————————————————————————\n");}
 {ws}                            {;}
 {newline}                       {LineNo++; printf("\n");}
 
@@ -86,5 +86,6 @@ comments    "//"|"--"
 %%
 
 int yywrap(void){
+    cout<<"\n————————————————————————————输入结束————————————————————————————"<<endl;
     return 1;
 }

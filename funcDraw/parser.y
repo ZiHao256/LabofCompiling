@@ -3,12 +3,13 @@
 #include"main.hpp"
 
 // 初始化参数
-double Parameter = 0, start=0, end=0, step=0;
+double Parameter = 0, draw_start=0, draw_end=0, draw_step=0;
 double origin_x = 0.0;
 double origin_y = 0.0;
 double rot = 0.0;
 double scale_x = 1.0;
 double scale_y = 1.0;
+int filename=0;
 
 
 
@@ -21,6 +22,7 @@ double scale_y = 1.0;
 // 声明变量
 extern "C"{
         extern struct Token token;  
+        extern unsigned int LineNo; 
 }
     
 
@@ -35,7 +37,10 @@ extern "C"{
 }
 struct ExprNode * MakeExprNode(int opcode, ...);
 double GetExprValue(struct ExprNode * expr);
+string GetTokenStr(int tokenNum);
 void TravelTree(struct ExprNode * root, int indent);
+void DrawLoop(double draw_start, double draw_end, double draw_step, struct ExprNode* HorPtr, struct ExprNode* VerPtr);
+void CalCoord(struct ExprNode*HorPtr, struct ExprNode*VerPtr, double &HorCoord, double &VerCoord);
 
 %}
 
@@ -54,16 +59,19 @@ void TravelTree(struct ExprNode * root, int indent);
     
     Statement: FOR T FROM Expression TO Expression STEP Expression DRAW L_BRACKET Expression COMMA Expression R_BRACKET
                     {
-                                start = GetExprValue($4);
-                                end = GetExprValue($6);
-                                step = GetExprValue($8);
+                                draw_start = GetExprValue($4);
+                                draw_end = GetExprValue($6);
+                                draw_step = GetExprValue($8);
                                 std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
                                 printf("\nrot = %f\n",rot);
-                                printf("\nstart = %f, end = %f,step = %f\n", start, end, step);                            
+                                printf("\ndraw_start = %f, draw_end = %f,draw_step = %f\n", draw_start, draw_end, draw_step);                            
                                 printf("\norigin_x = %f, origin_y = %f\n",origin_x,origin_y);
                                 printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
                                 std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
-
+                                std::cout<<"\n——————————————————————开始绘画——————————————————————————"<<std::endl;
+                                DrawLoop(draw_start, draw_end, draw_step, $11, $13);
+                                std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
+                                
                     }
             | ORIGIN IS L_BRACKET Expression COMMA Expression R_BRACKET
                     {
@@ -71,7 +79,7 @@ void TravelTree(struct ExprNode * root, int indent);
                             origin_y = GetExprValue($6);
                             std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
                             printf("\nrot = %f\n",rot);
-                            printf("\nstart = %f, end = %f,step = %f\n", start, end, step);                            
+                            printf("\ndraw_start = %f, draw_end = %f,draw_step = %f\n", draw_start, draw_end, draw_step);                            
                             printf("\norigin_x = %f, origin_y = %f\n",origin_x,origin_y);
                             printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
                             std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
@@ -83,7 +91,7 @@ void TravelTree(struct ExprNode * root, int indent);
                             scale_y = GetExprValue($6);
                             std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
                             printf("\nrot = %f\n",rot);
-                            printf("\nstart = %f, end = %f,step = %f\n", start, end, step);                            
+                            printf("\ndraw_start = %f, draw_end = %f,draw_step = %f\n", draw_start, draw_end, draw_step);                            
                             printf("\norigin_x = %f, origin_y = %f\n",origin_x,origin_y);
                             printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
                             std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
@@ -93,11 +101,11 @@ void TravelTree(struct ExprNode * root, int indent);
                         rot = GetExprValue($3);
                             std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
                             printf("\nrot = %f\n",rot);
-                            printf("\nstart = %f, end = %f,step = %f\n", start, end, step);                            
+                            printf("\ndraw_start = %f, draw_end = %f,draw_step = %f\n", draw_start, draw_end, draw_step);                            
                             printf("\norigin_x = %f, origin_y = %f\n",origin_x,origin_y);
                             printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
                             std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
-                    }
+                    }   
             ;
 
     
@@ -171,15 +179,15 @@ void TravelTree(struct ExprNode * root, int indent);
                 }
             | ERRTOKEN                              
                 {
-                        yyerror("error token\n");
+                        yyerror("error token!\n");
                 }
             ;
 
 
 %%
+        // 函数定义区
 
 int main(int argc, char ** argv){
-	int c,j=0;
 	if (argc>=2){
 	  if ((yyin = fopen(argv[1], "r")) == NULL){
 	    printf("Can't open file %s\n", argv[1]);
@@ -190,9 +198,10 @@ int main(int argc, char ** argv){
 	  }
 	}
 
-	
+	// 语法分析驱动程序
         yyparse();	
         
+
         if(argc>=2){
 	  fclose(yyin);
 	  if (argc>=3) fclose(yyout);
@@ -201,7 +210,7 @@ int main(int argc, char ** argv){
 }
     // 错误处理
 void yyerror(const char *str){
-    std::cerr<< str <<std::endl;
+    std::cerr<<"\n第"<<LineNo<<"行:"<< str <<std::endl;
 }
 
 struct ExprNode * MakeExprNode(int opcode, ...){
@@ -217,7 +226,8 @@ struct ExprNode * MakeExprNode(int opcode, ...){
                 ExprPtr->Content.CaseFunc.Child = (struct ExprNode *)va_arg(ArgPtr,struct ExprNode *);
                 ExprPtr->Content.CaseFunc.MathFuncPtr = (MathFuncPtr)va_arg(ArgPtr,FuncPtr);
                 break;
-        case T:
+        case T: 
+                // 使得在绘图时能获得不断变化的t
                 ExprPtr->Content.CaseParm = &Parameter;
                 break;
         default:
@@ -258,8 +268,31 @@ double GetExprValue(struct ExprNode * expr){
         }
 }
 
+string GetTokenStr(int tokenNum){
+        switch(tokenNum){
+                case (int)PLUS:
+                        return "PLUS";
+                        break;
+                case (int)MINUS:
+                        return "MINUS";
+                        break;
+                case (int)POWER:
+                        return "POWER";
+                        break;
+                case (int)MUL:
+                        return "MUL";
+                        break;
+                case (int)DIV:
+                        return "DIV";
+                        break;
+                default:
+                        return NULL;
+                
+        }
+}
+
 void TravelTree(struct ExprNode * root, int indent){
-        indent += 4;
+        indent += 4;    // 节点前的空格
         switch(root->OpCode){
                 case CONST_ID:
                         printf("%*s%f\n",indent," ",root->Content.CaseConst);
@@ -272,9 +305,60 @@ void TravelTree(struct ExprNode * root, int indent){
                         printf("%*sT\n",indent," ");
                         break;
                 default:
-                        printf("%*s%d\n",indent," ",root->OpCode);
+                        printf("%*s",indent," ");
+                        cout<<GetTokenStr(root->OpCode)<<endl;
                         TravelTree(root->Content.CaseOperator.Left, indent);
                         TravelTree(root->Content.CaseOperator.Right, indent);
                         break;
         }
+}
+
+void DrawLoop(double draw_start, double draw_end, double draw_step, struct ExprNode* HorPtr, struct ExprNode* VerPtr){
+        int n = (uint)((draw_end-draw_start)/draw_step);
+        cout<<n<<"个点"<<endl;
+        vector<double> x(n+1),y(n+1);
+
+        double x_coord,y_coord;
+        int i=0;
+        for(Parameter=draw_start; Parameter<=draw_end; Parameter+=draw_step){
+                
+                CalCoord(HorPtr, VerPtr, x_coord, y_coord);
+
+                x.at(i) = x_coord;
+                y.at(i) = y_coord;
+                i++;
+        }        
+        // 绘画一组坐标点
+        plt::xlim(0,1000);
+        plt::ylim(1000,0);
+        plt::plot(x,y);
+        //给文件名字
+        char str[20];
+        sprintf(str,"./picture/%d.png",filename);
+  
+        cout << "Saving result to " << filename <<".png"<<endl;
+        filename++;
+        plt::save(str);
+
+}
+
+void CalCoord(struct ExprNode*HorPtr, struct ExprNode*VerPtr, double &HorCoord, double &VerCoord){
+        double t;
+        
+        // 点的原始坐标
+        HorCoord = GetExprValue(HorPtr);
+        VerCoord = GetExprValue(VerPtr);
+
+        // 先比例变换
+        HorCoord *= scale_x;
+        VerCoord *= scale_y;
+
+        // 旋转变换
+        t = HorCoord*cos(rot)+VerCoord*sin(rot);
+        VerCoord = VerCoord*cos(rot) - HorCoord*sin(rot);
+        HorCoord = t;
+
+        // 平移变换
+        HorCoord += origin_x;
+        VerCoord += origin_y;
 }

@@ -169,46 +169,6 @@ funcdraw/fast:
 	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/build
 .PHONY : funcdraw/fast
 
-#=============================================================================
-# Target rules for targets named hello
-
-# Build rule for target.
-hello: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 hello
-.PHONY : hello
-
-# fast build rule for target.
-hello/fast:
-	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/build
-.PHONY : hello/fast
-
-examples/hello.o: examples/hello.cpp.o
-
-.PHONY : examples/hello.o
-
-# target to build an object file
-examples/hello.cpp.o:
-	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/examples/hello.cpp.o
-.PHONY : examples/hello.cpp.o
-
-examples/hello.i: examples/hello.cpp.i
-
-.PHONY : examples/hello.i
-
-# target to preprocess a source file
-examples/hello.cpp.i:
-	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/examples/hello.cpp.i
-.PHONY : examples/hello.cpp.i
-
-examples/hello.s: examples/hello.cpp.s
-
-.PHONY : examples/hello.s
-
-# target to generate assembly for a file
-examples/hello.cpp.s:
-	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/examples/hello.cpp.s
-.PHONY : examples/hello.cpp.s
-
 examples/lex.yy.o: examples/lex.yy.cpp.o
 
 .PHONY : examples/lex.yy.o
@@ -235,6 +195,33 @@ examples/lex.yy.s: examples/lex.yy.cpp.s
 examples/lex.yy.cpp.s:
 	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/examples/lex.yy.cpp.s
 .PHONY : examples/lex.yy.cpp.s
+
+examples/semantics.o: examples/semantics.cpp.o
+
+.PHONY : examples/semantics.o
+
+# target to build an object file
+examples/semantics.cpp.o:
+	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/examples/semantics.cpp.o
+.PHONY : examples/semantics.cpp.o
+
+examples/semantics.i: examples/semantics.cpp.i
+
+.PHONY : examples/semantics.i
+
+# target to preprocess a source file
+examples/semantics.cpp.i:
+	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/examples/semantics.cpp.i
+.PHONY : examples/semantics.cpp.i
+
+examples/semantics.s: examples/semantics.cpp.s
+
+.PHONY : examples/semantics.s
+
+# target to generate assembly for a file
+examples/semantics.cpp.s:
+	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/examples/semantics.cpp.s
+.PHONY : examples/semantics.cpp.s
 
 examples/y.tab.o: examples/y.tab.cpp.o
 
@@ -275,14 +262,13 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... funcdraw"
-	@echo "... hello"
 	@echo "... edit_cache"
-	@echo "... examples/hello.o"
-	@echo "... examples/hello.i"
-	@echo "... examples/hello.s"
 	@echo "... examples/lex.yy.o"
 	@echo "... examples/lex.yy.i"
 	@echo "... examples/lex.yy.s"
+	@echo "... examples/semantics.o"
+	@echo "... examples/semantics.i"
+	@echo "... examples/semantics.s"
 	@echo "... examples/y.tab.o"
 	@echo "... examples/y.tab.i"
 	@echo "... examples/y.tab.s"

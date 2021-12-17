@@ -1,4 +1,3 @@
 test:
-	bison --yacc -dv parser.y
-	flex -i scanner.l
-	g++ -o test y.tab.c lex.yy.c
+	bison -d -o y.tab.cpp parser.y
+	flex -i -o lex.yy.cpp scanner.l

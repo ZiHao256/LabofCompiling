@@ -165,7 +165,9 @@ Program: Program Statement
   * 忘记在语义动作中将 创建的节点地址给 $$
   * TravelTree中 忘记break
 
-## 绘图
+## 基本功能
+
+### 绘图
 
 * 变换顺序总是：比例变换→旋转变换→平移变换 
 * 用vector+plot画图
@@ -183,18 +185,98 @@ Program: Program Statement
 
 
 
-## 错误处理
+### 错误处理
+
+![image-20211217100405028](Document.assets/image-20211217100405028.png)
+
+
+
+![image-20211217100842285](Document.assets/image-20211217100842285.png)
+
+
+
+![image-20211217102851504](Document.assets/image-20211217102851504.png)
+
+
+
+![image-20211217103022792](Document.assets/image-20211217103022792.png)
 
 * 行号：全局变量
 
 
 
+## 附加功能
+
+* [x] 对逻辑坐标系重新定义，与习惯上的坐标系一致；
+* [ ] 扩充语句类型，如允许用户
+  * [x]    规定 图形颜色、
+  * [ ] 规定 点的大小、
+  * [ ] 定义/引用变量等；
+* [ ] 增加文本框，使得用户可以在图形中添加文字说明；
+* [x] 增加清图功能，使得图形可以具有简单的动画效果。 
+
+### 指定线条颜色和样式
+
+**颜色：**
+
+![img](https://images2015.cnblogs.com/blog/682463/201611/682463-20161130135947990-1277651618.png)
+
+```
+"r"
+"g"
+"b"
+```
+
+
+
+样式：
+
+```
+'-'       solid line style
+'--'      dashed line style
+
+':'       dotted line style
+```
+
+* 分析
+  * COLOR
+  * IS
+  * ColorChoice
+    * RED
+    * GREEN
+    * BLUE
+    * RANDOM
+* 分析：
+  * LINE
+  * IS
+  * LineChoice
+    * SOLID
+    * DASHED
+    * DOTTED
+
+* 创建全局变量
+  * color: 默认BLACK
+  * linestyle: 默认SOLID
+
+### 清图功能
+
+* 增加TOKEN
+  * 种别：CLEAR
+  * 关键词
+
+### 动图功能
+
+* 
+
+
+
+
+
 ## 会用CMake
 
-## 改写成CPP
 
-* 使用Windows+VS配置环境
-  * [(88条消息) [最全\]VS2017配置flex&bison_tankloverainbow的博客-CSDN博客_vs导入flex文件](https://blog.csdn.net/tankloverainbow/article/details/86653044)
+
+
 
 **问题：**
 
@@ -230,7 +312,7 @@ Program: Program Statement
 * 运行：`sudo /etc/init.d/xrdp start `
   * `ip a`
 
-172.30.0.1
+
 
 
 
@@ -294,6 +376,9 @@ Program: Program Statement
 * 求表达式的值？
   * switch
   * 递归
+* lex.yy.cpp:590:16: error: conflicting declaration of ‘int yywrap()’ with ‘C’ linkage
+  scanner.l:11:12: note: previous declaration with ‘C++’ linkage
+  * 在C++环境下使用C函数的时候，常常会出现编译器无法找到obj模块中的C函数定义，从而导致链接失败的情况，这是因为C++语言在编译的时候为了解决函数的多态问题，会将函数名和参数联合起来生成一个中间的函数名称，而C语言则不会，因此会造成链接时找不到对应函数的情况，此时C函数就需要用extern “C”进行链接指定，这告诉编译器，请保持我的名称，不要给我生成用于链接的中间函数名。
 
 
 

@@ -5,6 +5,10 @@
 #include<math.h>
 #include<stdarg.h>
 #include<vector>
+#include"../matplotlibcpp.h"
+
+namespace plt = matplotlibcpp;
+using namespace std;
 
 typedef double  (*MathFuncPtr)(double);
 typedef double  (*FuncPtr)(double);

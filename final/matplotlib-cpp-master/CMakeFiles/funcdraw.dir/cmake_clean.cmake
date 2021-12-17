@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/funcdraw.dir/examples/lex.yy.cpp.o"
+  "CMakeFiles/funcdraw.dir/examples/semantics.cpp.o"
   "CMakeFiles/funcdraw.dir/examples/y.tab.cpp.o"
   "bin/funcdraw"
   "bin/funcdraw.pdb"

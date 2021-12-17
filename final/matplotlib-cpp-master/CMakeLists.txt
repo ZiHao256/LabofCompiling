@@ -37,11 +37,11 @@ install(
 
 
 # Examples
-add_executable(hello examples/hello.cpp)
-target_link_libraries(hello PRIVATE matplotlib_cpp)
-set_target_properties(hello PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+# add_executable(hello examples/hello.cpp)
+# target_link_libraries(hello PRIVATE matplotlib_cpp)
+# set_target_properties(hello PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
-add_executable(funcdraw examples/y.tab.cpp examples/lex.yy.cpp)
+add_executable(funcdraw examples/y.tab.cpp examples/lex.yy.cpp examples/semantics.cpp)
 target_link_libraries(funcdraw PRIVATE matplotlib_cpp)
 set_target_properties(funcdraw PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 

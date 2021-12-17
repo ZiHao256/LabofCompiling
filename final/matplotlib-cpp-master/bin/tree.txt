@@ -1,0 +1,56 @@
+rot is 0;			-- 设置旋转角度(不旋转)
+scale is (1, 1);		-- 设置横坐标和纵坐标的比例
+
+--第一阶段
+origin is (500, 1000);	-- 设置原点的偏移量
+for t from 0 to 200 step 1 draw(t,-t);
+
+origin is (300,800);
+for t from 0 to 200 step 1 draw(t,t);
+
+--第二阶段
+origin is (300, 800);
+for t from 0 to 400 step 1 draw(t,0);
+
+origin is (200,600);
+for t from 0 to 200 step 1 draw(t,t);
+
+origin is (600,800);
+for t from 0 to 200 step 1 draw(t,-t);
+
+--第三阶段
+origin is (200,600);
+for t from 0 to 600 step 1 draw(t,0);
+
+origin is (100,400);
+for t from 0 to 200 step 1 draw(t,t);
+
+origin is (700,600);
+for t from 0 to 200 step 1 draw(t,-t);
+
+--第四阶段
+origin is (100,400);
+for t from 0 to 800 step 1 draw(t,0);
+
+origin is (0,200);
+for t from 0 to 200 step 1 draw(t,t);
+
+origin is (800,400);
+for t from 0 to 200 step 1 draw(t,-t);
+
+--第五阶段
+origin is (0,200);
+for t from 0 to 1000 step 1 draw(t,0);
+
+--树根
+origin is (450,200);
+for t from 0 to 150 step 1 draw(0,-t);
+
+origin is (550,200);
+for t from 0 to 150 step 1 draw(0,-t);
+
+origin is (400,0);
+for t from 0 to 50 step 1 draw(t,t);
+
+origin is (550,50);
+for t from 0 to 50 step 1 draw(t,-t);
