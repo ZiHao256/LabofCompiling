@@ -882,7 +882,7 @@ case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
 #line 40 "scanner.l"
-{LineNo++; printf("\n");}
+{LineNo++; printf("%d\n",LineNo);}
 	YY_BREAK
 /* 字符串 */
 case 4:

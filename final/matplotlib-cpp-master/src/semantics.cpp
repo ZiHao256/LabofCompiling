@@ -157,7 +157,12 @@ void DrawLoop(double draw_start, double draw_end, double draw_step, struct ExprN
 
         // cout<<color+line<<endl;
 
-        plt::plot(x,y,color+line);    
+        if (color != "random"){
+              plt::plot(x,y,color+line);   
+        }else{
+              plt::plot(x,y,line);    
+        }
+           
         // cout<<color+line<<endl;
 
         //给文件名字

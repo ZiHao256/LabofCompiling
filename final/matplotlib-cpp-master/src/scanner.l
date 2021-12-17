@@ -36,7 +36,7 @@ str         \<.*\>
     /* 注释和空白 */
 {comments}                      {printf("\n\n\n————————————————————————————注释————————————————————————————\n"); printf("%s",yytext);printf("\n————————————————————————————————————————————————————————————\n\n\n");}
 {ws}                            {;}
-{newline}                       {LineNo++; printf("\n");}
+{newline}                       {LineNo++; printf("%d\n",LineNo);}
 
     /* 字符串 */
 {str}                           {token.type = STR; token.lexeme = yytext; printf("(STR,\"%s\",0.0,NULL)",yytext); return (STR);}

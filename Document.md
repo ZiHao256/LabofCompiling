@@ -237,6 +237,7 @@ Program: Program Statement
 "r"
 "g"
 "b"
+
 ```
 
 
@@ -349,7 +350,7 @@ Program: Program Statement
 
 
 
-## 借助Python的matplotlib
+## * 借助Python的matplotlib
 
 * 直接使用matplotlib-cpp项目
 * 学会使用CMake
@@ -368,8 +369,6 @@ Program: Program Statement
     * [c++调用matplotlib(一) - 芒果的博客 - 芒果的个人博客 (mangoroom.cn)](https://mangoroom.cn/cpp/call-matplotlib-on-cpp.html)
     * 安装cmake
   * Linux:
-    * 
-* [(87条消息) [Ubuntu\]Could NOT find PythonLibs_倒霉茄子的博客-CSDN博客](https://blog.csdn.net/u011816873/article/details/74907978)
 * #define YYSTEPE 
   * yylval使用
   * $也使用了
