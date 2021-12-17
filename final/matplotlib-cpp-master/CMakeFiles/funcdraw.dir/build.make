@@ -57,57 +57,57 @@ include CMakeFiles/funcdraw.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/funcdraw.dir/flags.make
 
-CMakeFiles/funcdraw.dir/examples/y.tab.cpp.o: CMakeFiles/funcdraw.dir/flags.make
-CMakeFiles/funcdraw.dir/examples/y.tab.cpp.o: examples/y.tab.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/funcdraw.dir/examples/y.tab.cpp.o"
-	/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/funcdraw.dir/examples/y.tab.cpp.o -c /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/examples/y.tab.cpp
+CMakeFiles/funcdraw.dir/src/y.tab.cpp.o: CMakeFiles/funcdraw.dir/flags.make
+CMakeFiles/funcdraw.dir/src/y.tab.cpp.o: src/y.tab.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/funcdraw.dir/src/y.tab.cpp.o"
+	/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/funcdraw.dir/src/y.tab.cpp.o -c /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/src/y.tab.cpp
 
-CMakeFiles/funcdraw.dir/examples/y.tab.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/funcdraw.dir/examples/y.tab.cpp.i"
-	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/examples/y.tab.cpp > CMakeFiles/funcdraw.dir/examples/y.tab.cpp.i
+CMakeFiles/funcdraw.dir/src/y.tab.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/funcdraw.dir/src/y.tab.cpp.i"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/src/y.tab.cpp > CMakeFiles/funcdraw.dir/src/y.tab.cpp.i
 
-CMakeFiles/funcdraw.dir/examples/y.tab.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/funcdraw.dir/examples/y.tab.cpp.s"
-	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/examples/y.tab.cpp -o CMakeFiles/funcdraw.dir/examples/y.tab.cpp.s
+CMakeFiles/funcdraw.dir/src/y.tab.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/funcdraw.dir/src/y.tab.cpp.s"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/src/y.tab.cpp -o CMakeFiles/funcdraw.dir/src/y.tab.cpp.s
 
-CMakeFiles/funcdraw.dir/examples/lex.yy.cpp.o: CMakeFiles/funcdraw.dir/flags.make
-CMakeFiles/funcdraw.dir/examples/lex.yy.cpp.o: examples/lex.yy.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/funcdraw.dir/examples/lex.yy.cpp.o"
-	/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/funcdraw.dir/examples/lex.yy.cpp.o -c /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/examples/lex.yy.cpp
+CMakeFiles/funcdraw.dir/src/lex.yy.cpp.o: CMakeFiles/funcdraw.dir/flags.make
+CMakeFiles/funcdraw.dir/src/lex.yy.cpp.o: src/lex.yy.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/funcdraw.dir/src/lex.yy.cpp.o"
+	/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/funcdraw.dir/src/lex.yy.cpp.o -c /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/src/lex.yy.cpp
 
-CMakeFiles/funcdraw.dir/examples/lex.yy.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/funcdraw.dir/examples/lex.yy.cpp.i"
-	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/examples/lex.yy.cpp > CMakeFiles/funcdraw.dir/examples/lex.yy.cpp.i
+CMakeFiles/funcdraw.dir/src/lex.yy.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/funcdraw.dir/src/lex.yy.cpp.i"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/src/lex.yy.cpp > CMakeFiles/funcdraw.dir/src/lex.yy.cpp.i
 
-CMakeFiles/funcdraw.dir/examples/lex.yy.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/funcdraw.dir/examples/lex.yy.cpp.s"
-	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/examples/lex.yy.cpp -o CMakeFiles/funcdraw.dir/examples/lex.yy.cpp.s
+CMakeFiles/funcdraw.dir/src/lex.yy.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/funcdraw.dir/src/lex.yy.cpp.s"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/src/lex.yy.cpp -o CMakeFiles/funcdraw.dir/src/lex.yy.cpp.s
 
-CMakeFiles/funcdraw.dir/examples/semantics.cpp.o: CMakeFiles/funcdraw.dir/flags.make
-CMakeFiles/funcdraw.dir/examples/semantics.cpp.o: examples/semantics.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/funcdraw.dir/examples/semantics.cpp.o"
-	/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/funcdraw.dir/examples/semantics.cpp.o -c /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/examples/semantics.cpp
+CMakeFiles/funcdraw.dir/src/semantics.cpp.o: CMakeFiles/funcdraw.dir/flags.make
+CMakeFiles/funcdraw.dir/src/semantics.cpp.o: src/semantics.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/funcdraw.dir/src/semantics.cpp.o"
+	/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/funcdraw.dir/src/semantics.cpp.o -c /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/src/semantics.cpp
 
-CMakeFiles/funcdraw.dir/examples/semantics.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/funcdraw.dir/examples/semantics.cpp.i"
-	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/examples/semantics.cpp > CMakeFiles/funcdraw.dir/examples/semantics.cpp.i
+CMakeFiles/funcdraw.dir/src/semantics.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/funcdraw.dir/src/semantics.cpp.i"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/src/semantics.cpp > CMakeFiles/funcdraw.dir/src/semantics.cpp.i
 
-CMakeFiles/funcdraw.dir/examples/semantics.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/funcdraw.dir/examples/semantics.cpp.s"
-	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/examples/semantics.cpp -o CMakeFiles/funcdraw.dir/examples/semantics.cpp.s
+CMakeFiles/funcdraw.dir/src/semantics.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/funcdraw.dir/src/semantics.cpp.s"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/src/semantics.cpp -o CMakeFiles/funcdraw.dir/src/semantics.cpp.s
 
 # Object files for target funcdraw
 funcdraw_OBJECTS = \
-"CMakeFiles/funcdraw.dir/examples/y.tab.cpp.o" \
-"CMakeFiles/funcdraw.dir/examples/lex.yy.cpp.o" \
-"CMakeFiles/funcdraw.dir/examples/semantics.cpp.o"
+"CMakeFiles/funcdraw.dir/src/y.tab.cpp.o" \
+"CMakeFiles/funcdraw.dir/src/lex.yy.cpp.o" \
+"CMakeFiles/funcdraw.dir/src/semantics.cpp.o"
 
 # External object files for target funcdraw
 funcdraw_EXTERNAL_OBJECTS =
 
-bin/funcdraw: CMakeFiles/funcdraw.dir/examples/y.tab.cpp.o
-bin/funcdraw: CMakeFiles/funcdraw.dir/examples/lex.yy.cpp.o
-bin/funcdraw: CMakeFiles/funcdraw.dir/examples/semantics.cpp.o
+bin/funcdraw: CMakeFiles/funcdraw.dir/src/y.tab.cpp.o
+bin/funcdraw: CMakeFiles/funcdraw.dir/src/lex.yy.cpp.o
+bin/funcdraw: CMakeFiles/funcdraw.dir/src/semantics.cpp.o
 bin/funcdraw: CMakeFiles/funcdraw.dir/build.make
 bin/funcdraw: /usr/lib/x86_64-linux-gnu/libpython3.8.so
 bin/funcdraw: CMakeFiles/funcdraw.dir/link.txt

@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/examples/hello.cpp
-cmath
--
-../matplotlibcpp.h
-/mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/matplotlibcpp.h
-
 /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/matplotlibcpp.h
 Python.h
 -
@@ -39,6 +33,14 @@ numpy/arrayobject.h
 -
 opencv2/opencv.hpp
 -
+
+/mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/src/hello.cpp
+iostream
+-
+cmath
+-
+../matplotlibcpp.h
+/mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/matplotlibcpp.h
 
 /usr/include/python3.8/Python.h
 patchlevel.h

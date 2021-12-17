@@ -4,4 +4,5 @@
 /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/CMakeFiles/list_install_components.dir
 /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/CMakeFiles/rebuild_cache.dir
 /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/CMakeFiles/funcdraw.dir
+/mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/CMakeFiles/hello.dir
 /mnt/e/5th_term/FundamentalsOfCompiling/LabofCompiling/final/matplotlib-cpp-master/CMakeFiles/edit_cache.dir

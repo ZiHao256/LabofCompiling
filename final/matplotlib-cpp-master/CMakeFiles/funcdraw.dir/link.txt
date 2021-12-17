@@ -1,1 +1,1 @@
-/bin/c++     CMakeFiles/funcdraw.dir/examples/y.tab.cpp.o CMakeFiles/funcdraw.dir/examples/lex.yy.cpp.o CMakeFiles/funcdraw.dir/examples/semantics.cpp.o  -o bin/funcdraw  /usr/lib/x86_64-linux-gnu/libpython3.8.so 
+/bin/c++     CMakeFiles/funcdraw.dir/src/y.tab.cpp.o CMakeFiles/funcdraw.dir/src/lex.yy.cpp.o CMakeFiles/funcdraw.dir/src/semantics.cpp.o  -o bin/funcdraw  /usr/lib/x86_64-linux-gnu/libpython3.8.so 

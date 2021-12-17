@@ -1,5 +1,7 @@
 rot is 0;			-- 设置旋转角度(不旋转)
 scale is (1, 1);		-- 设置横坐标和纵坐标的比例
+color is green;
+--line is dotted;
 
 --第一阶段
 origin is (500, 1000);	-- 设置原点的偏移量
@@ -43,6 +45,7 @@ origin is (0,200);
 for t from 0 to 1000 step 1 draw(t,0);
 
 --树根
+color is black;
 origin is (450,200);
 for t from 0 to 150 step 1 draw(0,-t);
 

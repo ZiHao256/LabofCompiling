@@ -1,42 +1,12 @@
 #define _USE_MATH_DEFINES
+#include <iostream>
 #include <cmath>
 #include "../matplotlibcpp.h"
 
 namespace plt = matplotlibcpp;
-using namespace std;
 
-void drawHeart();
-void drawBasic();
-int main(){
-
-    for (int i=0; i<4; i++){
-        int t;
-        cin>>t;
-        if(t == 520){
-            drawHeart();
-        }else{
-            drawBasic();
-        }
-            
-
-    }
-
-    return 0;
-}
-void drawHeart(){
-    int n = 5000; // number of data points
-	vector<double> x(n),y(n); 
-	for(int i=0; i<n; ++i) {
-		double t = 2*M_PI*i/n;
-		x.at(i) = 16*sin(t)*sin(t)*sin(t);
-		y.at(i) = 13*cos(t) - 5*cos(2*t) - 2*cos(3*t) - cos(4*t);
-	}
-	plt::plot(x, y, "r-", x, [](double d) { return 12.5+abs(sin(d)); }, "k-");
-    string filename = "./picture/heart.png";
-    std::cout << "Saving result to " << filename << std::endl;;
-    plt::save(filename);
-}
-void drawBasic(){
+int main() 
+{
     // Prepare data.
     int n = 5000;
     std::vector<double> x(n), y(n), z(n), w(n,2);
@@ -63,12 +33,12 @@ void drawBasic(){
 
     // Add graph title
     plt::title("Sample figure");
-
+    plt::text(10,10,"hello");
     // Enable legend.
     plt::legend();
 
     // save figure
-    string filename = "./picture/basic.png";
+    const char* filename = "./picture/basic.png";
     std::cout << "Saving result to " << filename << std::endl;;
     plt::save(filename);
 }

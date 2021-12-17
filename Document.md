@@ -2,9 +2,7 @@
 title: Document
 ---
 
-* C 
-* RUST
-* Python
+* C ++
 
 
 
@@ -208,18 +206,32 @@ Program: Program Statement
 ## 附加功能
 
 * [x] 对逻辑坐标系重新定义，与习惯上的坐标系一致；
-* [ ] 扩充语句类型，如允许用户
-  * [x]    规定 图形颜色、
-  * [ ] 规定 点的大小、
-  * [ ] 定义/引用变量等；
-* [ ] 增加文本框，使得用户可以在图形中添加文字说明；
+* [x] 扩充语句类型，如允许用户
+  * [x] 规定 图形颜色、
+* [x] 增加文本框，使得用户可以在图形中添加文字说明；
 * [x] 增加清图功能，使得图形可以具有简单的动画效果。 
+
+### 增加注释
+
+* 借助matplotlib的：
+  * plt::text(double,double,string)
+  * COMMENT IS (Expr,Expr,STR)
+
+
+
+### 增加标题
+
+* 分析：
+  * 借助plt::title(string)
+  * TITLE IS STR;
+
+
 
 ### 指定线条颜色和样式
 
 **颜色：**
 
-![img](https://images2015.cnblogs.com/blog/682463/201611/682463-20161130135947990-1277651618.png)
+* matplotlib-cpp不支持浮点数或者二进制输入颜色
 
 ```
 "r"
@@ -229,12 +241,11 @@ Program: Program Statement
 
 
 
-样式：
+**线条样式：**
 
 ```
 '-'       solid line style
 '--'      dashed line style
-
 ':'       dotted line style
 ```
 
@@ -253,20 +264,24 @@ Program: Program Statement
     * SOLID
     * DASHED
     * DOTTED
-
 * 创建全局变量
   * color: 默认BLACK
   * linestyle: 默认SOLID
+
+
+
+* **问题**：颜色简写才能和线条类型组合
+
+### 下一张图
+
+* 分析：是关键词
+  * 种别为NEXT
 
 ### 清图功能
 
 * 增加TOKEN
   * 种别：CLEAR
-  * 关键词
-
-### 动图功能
-
-* 
+  * 是关键词
 
 
 

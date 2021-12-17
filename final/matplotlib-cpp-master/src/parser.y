@@ -1,6 +1,6 @@
 %{
 
-#include"semantics.hpp"
+#include"main.hpp"
 
 // 宏定义
 #define YYSTYPE struct ExprNode *               //定义语义变量类型为树节点指针,方便同时构造Expression的语法树
@@ -34,10 +34,14 @@ string line = "-";
 
 %}
 
-%token CONST_ID FUNC FOR T FROM TO STEP DRAW CLEAR ORIGIN SCALE ROT IS 
+%token CONST_ID FUNC 
+%token FOR T FROM TO STEP DRAW ORIGIN SCALE ROT IS 
+%token CLEAR NEXT 
 %token SIN COS TAN LN EXP SQRT COMMA L_BRACKET R_BRACKET SEMICO ERRTOKEN
-%token COLOR RED GREEN BLUE RANDOM 
+%token COLOR RED GREEN BLUE BLACK RANDOM
 %token LINE SOLID DASHED DOTTED
+%token TITLE STR
+%token COMMENT 
 %left PLUS MINUS
 %left MUL DIV
 %right UNSUB
@@ -61,16 +65,16 @@ string line = "-";
                                 // printf("\norigin_x = %f, origin_y = %f\n",origin_x,origin_y);
                                 // printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
                                 // std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
-                                std::cout<<"\n——————————————————————开始绘画——————————————————————————"<<std::endl;
+                                std::cout<<"\n\n\n——————————————————————开始绘画——————————————————————————"<<std::endl;
                                 DrawLoop(draw_start, draw_end, draw_step, $11, $13);
-                                std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
+                                std::cout<<"\n————————————————————————————————————————————————————————\n\n"<<std::endl;
                                 
                     }
             | ORIGIN IS L_BRACKET Expression COMMA Expression R_BRACKET
                     {
                             origin_x = GetExprValue($4);
                             origin_y = GetExprValue($6);
-                            std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
+                        //     std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
                         //     printf("\nrot = %f\n",rot);
                         //     printf("\ndraw_start = %f, draw_end = %f,draw_step = %f\n", draw_start, draw_end, draw_step);                            
                         //     printf("\norigin_x = %f, origin_y = %f\n",origin_x,origin_y);
@@ -99,20 +103,34 @@ string line = "-";
                         //     printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
                         //     std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
                     }
+            | TITLE IS STR
+                        {
+
+                                std::cout<<"\n\n\n——————————————————————增加标题——————————————————————————"<<std::endl;
+                                AddTitle(token.lexeme);
+                                std::cout<<"\n————————————————————————————————————————————————————————\n\n"<<std::endl;                            
+                                
+                        }
+            | COMMENT IS L_BRACKET Expression COMMA Expression COMMA STR R_BRACKET
+                        {
+                                std::cout<<"\n\n\n——————————————————————增加注释——————————————————————————"<<std::endl;
+                                AddComment(GetExprValue($4), GetExprValue($6), token.lexeme);
+                                std::cout<<"\n————————————————————————————————————————————————————————\n\n"<<std::endl;                                                            
+                        }
             | COLOR IS ColorChoice
-                {
-
-                }
             | LINE IS LineChoice
-                {
-
-                }
             | CLEAR
-                    {
-                            std::cout<<"\n——————————————————————开始清图——————————————————————————"<<std::endl;
-                            Clear();
-                            std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;                            
-                    }   
+                        {
+                                std::cout<<"\n\n\n——————————————————————开始清图——————————————————————————"<<std::endl;
+                                Clear();
+                                std::cout<<"\n————————————————————————————————————————————————————————\n\n"<<std::endl;                            
+                        }
+            | NEXT
+                        {
+                                std::cout<<"\n\n\n——————————————————————绘制下一张图——————————————————————"<<std::endl;
+                                Next();
+                                std::cout<<"\n————————————————————————————————————————————————————————\n\n"<<std::endl;                                                           
+                        }   
             ;
 
     ColorChoice: RED
@@ -127,11 +145,12 @@ string line = "-";
                         {
                                 color = "b";
                         }
-                | RANDOM
+                | BLACK
                         {
-                                color = "random";
+                                color = "k";
                         }
                 ;
+
     LineChoice: SOLID
                         {
                                 line = "-";
@@ -157,42 +176,42 @@ string line = "-";
             | Expression PLUS Expression
                 {
                         $$ = MakeExprNode(PLUS, $1, $3);
-                        std::cout<<"\n————————————————————————————tree————————————————————————————"<<std::endl;
+                        std::cout<<"\n\n\n——————————————————————————ExprTree——————————————————————————"<<std::endl;
                         int indent=-4;
                         TravelTree($$, indent);
-                        std::cout<<"\n————————————————————————————————————————————————————————————"<<std::endl;
+                        std::cout<<"\n————————————————————————————————————————————————————————————\n\n"<<std::endl;
                 }
             | Expression MINUS Expression
                 {
                         $$ = MakeExprNode(MINUS, $1, $3);
-                        std::cout<<"\n————————————————————————————tree————————————————————————————"<<std::endl;
+                        std::cout<<"\n\n\n——————————————————————————ExprTree——————————————————————————"<<std::endl;
                         int indent=-4;
                         TravelTree($$, indent);
-                        std::cout<<"\n————————————————————————————————————————————————————————————"<<std::endl;
+                        std::cout<<"\n————————————————————————————————————————————————————————————\n\n"<<std::endl;
                 }
             | Expression MUL Expression
                 {
                         $$ = MakeExprNode(MUL, $1, $3);
-                        std::cout<<"\n————————————————————————————tree————————————————————————————"<<std::endl;
+                        std::cout<<"\n\n\n——————————————————————————ExprTree——————————————————————————"<<std::endl;
                         int indent=-4;
                         TravelTree($$, indent);
-                        std::cout<<"\n————————————————————————————————————————————————————————————"<<std::endl;
+                        std::cout<<"\n————————————————————————————————————————————————————————————\n\n"<<std::endl;
                 }
             | Expression DIV Expression
                 {
                         $$ = MakeExprNode(DIV, $1, $3);
-                        std::cout<<"\n————————————————————————————tree————————————————————————————"<<std::endl;
+                        std::cout<<"\n\n\n——————————————————————————ExprTree——————————————————————————"<<std::endl;
                         int indent=-4;
                         TravelTree($$, indent);
-                        std::cout<<"\n————————————————————————————————————————————————————————————"<<std::endl;
+                        std::cout<<"\n————————————————————————————————————————————————————————————\n\n"<<std::endl;
                 }
             | Expression POWER Expression
                 {
                         $$ = MakeExprNode(POWER, $1, $3);
-                        std::cout<<"\n————————————————————————————tree————————————————————————————"<<std::endl;
+                        std::cout<<"\n\n\n——————————————————————————ExprTree——————————————————————————"<<std::endl;
                         int indent=-4;
                         TravelTree($$, indent);
-                        std::cout<<"\n————————————————————————————————————————————————————————————"<<std::endl;
+                        std::cout<<"\n————————————————————————————————————————————————————————————\n\n"<<std::endl;
                 }
             | L_BRACKET Expression R_BRACKET
                 {
@@ -205,10 +224,10 @@ string line = "-";
             | MINUS Expression %prec UNSUB
                 {
                         $$ = MakeExprNode(MINUS, MakeExprNode(CONST_ID, 0.0),$2);
-                        std::cout<<"\n————————————————————————————tree————————————————————————————"<<std::endl;
+                        std::cout<<"\n\n\n——————————————————————————ExprTree——————————————————————————"<<std::endl;
                         int indent=0;
                         TravelTree($$, indent);
-                        std::cout<<"\n————————————————————————————————————————————————————————————"<<std::endl;
+                        std::cout<<"\n————————————————————————————————————————————————————————————\n\n"<<std::endl;
                 }
             | FUNC L_BRACKET Expression R_BRACKET   
                 {

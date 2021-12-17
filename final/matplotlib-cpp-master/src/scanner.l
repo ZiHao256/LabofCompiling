@@ -1,5 +1,5 @@
 %{
-#include"semantics.hpp"
+#include"main.hpp"
 #include"y.tab.hpp"
 
     // 宏定义
@@ -23,6 +23,7 @@ number      [0-9]+(\.[0-9]*)?
 ws          [\t]+
 newline     \n
 comments    "//"|"--"[^\n]*
+str         \<.*\>
 
 %%
   /* 第二部分是词法规则部分。 */
@@ -32,11 +33,18 @@ comments    "//"|"--"[^\n]*
    * 正规式和动作之间要用空白分割。
    */
 
-{comments}                      {BEGIN comment_entry; printf("\n————————————————————————————注释————————————————————————————\n"); printf("%s",yytext);printf("\n————————————————————————————————————————————————————————————\n");}
+    /* 注释和空白 */
+{comments}                      {printf("\n\n\n————————————————————————————注释————————————————————————————\n"); printf("%s",yytext);printf("\n————————————————————————————————————————————————————————————\n\n\n");}
 {ws}                            {;}
 {newline}                       {LineNo++; printf("\n");}
 
+    /* 字符串 */
+{str}                           {token.type = STR; token.lexeme = yytext; printf("(STR,\"%s\",0.0,NULL)",yytext); return (STR);}
+
     /* 关键词 */
+"TITLE"                         {printf("(TITLE,\"TITLE\",0.0,NULL) "); return (TITLE);} 
+"COMMENT"                       {printf("(COMMENT,\"COMMENT\",0.0,NULL) "); return (COMMENT);} 
+
 "ORIGIN"                        {printf("(ORIGIN,\"ORIGIN\",0.0,NULL) "); return (ORIGIN);}
 "SCALE"                         {printf("(SCALE,\"SCALE\",0.0,NULL) "); return (SCALE);}
 "ROT"                           {printf("(ROT,\"ROT\",0.0,NULL) "); return (ROT);}
@@ -46,16 +54,20 @@ comments    "//"|"--"[^\n]*
 "TO"                            {printf("(TO,\"TO\",0.0,NULL) "); return (TO);}
 "STEP"                          {printf("(STEP,\"STEP\",0.0,NULL) "); return (STEP);}
 "DRAW"                          {printf("(DRAW,\"DRAW\",0.0,NULL) "); return (DRAW);}
-"CLEAR"                         {return (CLEAR);}
-"COLOR"                         {return (COLOR);}
-"RED"                           {return (RED);}
-"GREEN"                         {return (GREEN);}
-"BLUE"                          {return (BLUE);}
-"RANDOM"                        {return (RANDOM);}
-"LINE"                          {return (LINE);}
-"SOLID"                         {return (SOLID);}
-"DASHED"                        {return (DASHED);}
-"DOTTED"                        {return (DOTTED);}
+
+"CLEAR"                         {printf("(CLEAR,\"CLEAR\",0.0,NULL) "); return (CLEAR);}
+"NEXT"                          {printf("(NEXT,\"NEXT\",0.0,NULL) "); return (NEXT);}
+
+"COLOR"                         {printf("(COLOR,\"COLOR\",0.0,NULL) "); return (COLOR);}
+"RED"                           {printf("(RED,\"RED\",0.0,NULL) "); return (RED);}
+"GREEN"                         {printf("(GREEN,\"GREEN\",0.0,NULL) "); return (GREEN);}
+"BLUE"                          {printf("(BLUE,\"BLUE\",0.0,NULL) "); return (BLUE);}
+"BLACK"                         {printf("(BLACK,\"BLACK\",0.0,NULL) "); return (BLACK);}
+"RANDOM"                        {printf("(RANDOM,\"RANDOM\",0.0,NULL) "); return (RANDOM);}
+"LINE"                          {printf("(LINE,\"LINE\",0.0,NULL) "); return (LINE);}
+"SOLID"                         {printf("(SOLID,\"SOLID\",0.0,NULL) "); return (SOLID);}
+"DASHED"                        {printf("(DASHED,\"DASHED\",0.0,NULL) "); return (DASHED);}
+"DOTTED"                        {printf("(DOTTED,\"DOTTED\",0.0,NULL) "); return (DOTTED);}
     
     /* 参数 */
 "T"                             {printf("(T,\"T\",0.0,NULL) "); return (T);}
@@ -92,13 +104,10 @@ comments    "//"|"--"[^\n]*
 .                           {return (ERRTOKEN);}
 
 
-<comment_entry>. ;
-<comment_entry>\n   BEGIN 0; LineNo++;
-
 %%
 // 函数定义
 
 int yywrap(void){
-    cout<<"\n————————————————————————————输入结束————————————————————————————"<<endl;
+    cout<<"\n\n\n————————————————————————————输入结束————————————————————————————"<<endl;
     return 1;
 }

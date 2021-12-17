@@ -169,86 +169,126 @@ funcdraw/fast:
 	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/build
 .PHONY : funcdraw/fast
 
-examples/lex.yy.o: examples/lex.yy.cpp.o
+#=============================================================================
+# Target rules for targets named hello
 
-.PHONY : examples/lex.yy.o
+# Build rule for target.
+hello: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 hello
+.PHONY : hello
 
-# target to build an object file
-examples/lex.yy.cpp.o:
-	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/examples/lex.yy.cpp.o
-.PHONY : examples/lex.yy.cpp.o
+# fast build rule for target.
+hello/fast:
+	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/build
+.PHONY : hello/fast
 
-examples/lex.yy.i: examples/lex.yy.cpp.i
+src/hello.o: src/hello.cpp.o
 
-.PHONY : examples/lex.yy.i
-
-# target to preprocess a source file
-examples/lex.yy.cpp.i:
-	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/examples/lex.yy.cpp.i
-.PHONY : examples/lex.yy.cpp.i
-
-examples/lex.yy.s: examples/lex.yy.cpp.s
-
-.PHONY : examples/lex.yy.s
-
-# target to generate assembly for a file
-examples/lex.yy.cpp.s:
-	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/examples/lex.yy.cpp.s
-.PHONY : examples/lex.yy.cpp.s
-
-examples/semantics.o: examples/semantics.cpp.o
-
-.PHONY : examples/semantics.o
+.PHONY : src/hello.o
 
 # target to build an object file
-examples/semantics.cpp.o:
-	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/examples/semantics.cpp.o
-.PHONY : examples/semantics.cpp.o
+src/hello.cpp.o:
+	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/src/hello.cpp.o
+.PHONY : src/hello.cpp.o
 
-examples/semantics.i: examples/semantics.cpp.i
+src/hello.i: src/hello.cpp.i
 
-.PHONY : examples/semantics.i
+.PHONY : src/hello.i
 
 # target to preprocess a source file
-examples/semantics.cpp.i:
-	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/examples/semantics.cpp.i
-.PHONY : examples/semantics.cpp.i
+src/hello.cpp.i:
+	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/src/hello.cpp.i
+.PHONY : src/hello.cpp.i
 
-examples/semantics.s: examples/semantics.cpp.s
+src/hello.s: src/hello.cpp.s
 
-.PHONY : examples/semantics.s
+.PHONY : src/hello.s
 
 # target to generate assembly for a file
-examples/semantics.cpp.s:
-	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/examples/semantics.cpp.s
-.PHONY : examples/semantics.cpp.s
+src/hello.cpp.s:
+	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/src/hello.cpp.s
+.PHONY : src/hello.cpp.s
 
-examples/y.tab.o: examples/y.tab.cpp.o
+src/lex.yy.o: src/lex.yy.cpp.o
 
-.PHONY : examples/y.tab.o
+.PHONY : src/lex.yy.o
 
 # target to build an object file
-examples/y.tab.cpp.o:
-	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/examples/y.tab.cpp.o
-.PHONY : examples/y.tab.cpp.o
+src/lex.yy.cpp.o:
+	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/src/lex.yy.cpp.o
+.PHONY : src/lex.yy.cpp.o
 
-examples/y.tab.i: examples/y.tab.cpp.i
+src/lex.yy.i: src/lex.yy.cpp.i
 
-.PHONY : examples/y.tab.i
+.PHONY : src/lex.yy.i
 
 # target to preprocess a source file
-examples/y.tab.cpp.i:
-	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/examples/y.tab.cpp.i
-.PHONY : examples/y.tab.cpp.i
+src/lex.yy.cpp.i:
+	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/src/lex.yy.cpp.i
+.PHONY : src/lex.yy.cpp.i
 
-examples/y.tab.s: examples/y.tab.cpp.s
+src/lex.yy.s: src/lex.yy.cpp.s
 
-.PHONY : examples/y.tab.s
+.PHONY : src/lex.yy.s
 
 # target to generate assembly for a file
-examples/y.tab.cpp.s:
-	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/examples/y.tab.cpp.s
-.PHONY : examples/y.tab.cpp.s
+src/lex.yy.cpp.s:
+	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/src/lex.yy.cpp.s
+.PHONY : src/lex.yy.cpp.s
+
+src/semantics.o: src/semantics.cpp.o
+
+.PHONY : src/semantics.o
+
+# target to build an object file
+src/semantics.cpp.o:
+	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/src/semantics.cpp.o
+.PHONY : src/semantics.cpp.o
+
+src/semantics.i: src/semantics.cpp.i
+
+.PHONY : src/semantics.i
+
+# target to preprocess a source file
+src/semantics.cpp.i:
+	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/src/semantics.cpp.i
+.PHONY : src/semantics.cpp.i
+
+src/semantics.s: src/semantics.cpp.s
+
+.PHONY : src/semantics.s
+
+# target to generate assembly for a file
+src/semantics.cpp.s:
+	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/src/semantics.cpp.s
+.PHONY : src/semantics.cpp.s
+
+src/y.tab.o: src/y.tab.cpp.o
+
+.PHONY : src/y.tab.o
+
+# target to build an object file
+src/y.tab.cpp.o:
+	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/src/y.tab.cpp.o
+.PHONY : src/y.tab.cpp.o
+
+src/y.tab.i: src/y.tab.cpp.i
+
+.PHONY : src/y.tab.i
+
+# target to preprocess a source file
+src/y.tab.cpp.i:
+	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/src/y.tab.cpp.i
+.PHONY : src/y.tab.cpp.i
+
+src/y.tab.s: src/y.tab.cpp.s
+
+.PHONY : src/y.tab.s
+
+# target to generate assembly for a file
+src/y.tab.cpp.s:
+	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/src/y.tab.cpp.s
+.PHONY : src/y.tab.cpp.s
 
 # Help Target
 help:
@@ -262,16 +302,20 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... funcdraw"
+	@echo "... hello"
 	@echo "... edit_cache"
-	@echo "... examples/lex.yy.o"
-	@echo "... examples/lex.yy.i"
-	@echo "... examples/lex.yy.s"
-	@echo "... examples/semantics.o"
-	@echo "... examples/semantics.i"
-	@echo "... examples/semantics.s"
-	@echo "... examples/y.tab.o"
-	@echo "... examples/y.tab.i"
-	@echo "... examples/y.tab.s"
+	@echo "... src/hello.o"
+	@echo "... src/hello.i"
+	@echo "... src/hello.s"
+	@echo "... src/lex.yy.o"
+	@echo "... src/lex.yy.i"
+	@echo "... src/lex.yy.s"
+	@echo "... src/semantics.o"
+	@echo "... src/semantics.i"
+	@echo "... src/semantics.s"
+	@echo "... src/y.tab.o"
+	@echo "... src/y.tab.i"
+	@echo "... src/y.tab.s"
 .PHONY : help
 
 

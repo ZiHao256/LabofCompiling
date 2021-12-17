@@ -18,6 +18,9 @@ extern void TravelTree(struct ExprNode * root, int indent);
 extern void DrawLoop(double draw_start, double draw_end, double draw_step, struct ExprNode* HorPtr, struct ExprNode* VerPtr);
 extern void CalCoord(struct ExprNode*HorPtr, struct ExprNode*VerPtr, double &HorCoord, double &VerCoord);
 extern void Clear();
+extern void Next();
+extern void AddTitle(string title);
+extern void AddComment(double x_coord, double y_coord, string comment);
 
 // 变量定义
 typedef double  (*MathFuncPtr)(double);
@@ -25,7 +28,7 @@ typedef double  (*FuncPtr)(double);
 
 // token种别和属性
 struct Token{
-    char * lexeme;              // 记号的字面值
+    string lexeme;              // 记号的字面值
     int type;                   // 记号的种别
     double value;               // 记号的属性值
     double (*FuncPtr)(double);  // 函数地址

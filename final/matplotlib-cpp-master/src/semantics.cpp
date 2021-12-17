@@ -1,4 +1,4 @@
-#include"semantics.hpp"
+#include"main.hpp"
 #include"y.tab.hpp"
 
 // 变量声明
@@ -23,10 +23,11 @@ void CalCoord(struct ExprNode*HorPtr, struct ExprNode*VerPtr, double &HorCoord, 
 void Clear();
 
 // 变量定义
-int filename=0;
+int filename=0; // 绘制图片的文件名
 
 // 函数定义
 struct ExprNode * MakeExprNode(int opcode, ...){
+    // 构造以操作符、函数、常数、参数构成的树
     va_list ArgPtr;
     struct ExprNode *ExprPtr = new struct ExprNode;
     ExprPtr->OpCode = opcode;
@@ -51,6 +52,7 @@ struct ExprNode * MakeExprNode(int opcode, ...){
 }
 
 double GetExprValue(struct ExprNode * expr){
+        // 获得Expr的值
         switch(expr->OpCode){
                 case CONST_ID:
                         return expr->Content.CaseConst;
@@ -106,6 +108,7 @@ string GetTokenStr(int tokenNum){
 }
 
 void TravelTree(struct ExprNode * root, int indent){
+        // 输出Expr的语法树
         indent += 4;    // 节点前的空格
         switch(root->OpCode){
                 case CONST_ID:
@@ -128,6 +131,7 @@ void TravelTree(struct ExprNode * root, int indent){
 }
 
 void DrawLoop(double draw_start, double draw_end, double draw_step, struct ExprNode* HorPtr, struct ExprNode* VerPtr){
+        // 绘制一条由点组成的线
         int n = (uint)((draw_end-draw_start)/draw_step);
         cout<<n<<"个点"<<endl;
         vector<double> x(n+1,0),y(n+1,0);
@@ -151,21 +155,22 @@ void DrawLoop(double draw_start, double draw_end, double draw_step, struct ExprN
         plt::xlim(-10,1010);
         plt::ylim(-10,1010);
 
-        if (color != "random"){
-            plt::plot(x,y,color+line);    
-        }else{
-                plt::plot(x,y,line);
-        }
+        // cout<<color+line<<endl;
+
+        plt::plot(x,y,color+line);    
+        // cout<<color+line<<endl;
+
         //给文件名字
         char str[20];
         sprintf(str,"./picture/%d.png",filename);
+        // cout<<str<<endl;
         cout << "Saving result to " << filename <<".png"<<endl;
-        filename++;
         plt::save(str);
 
 }
 
 void CalCoord(struct ExprNode*HorPtr, struct ExprNode*VerPtr, double &HorCoord, double &VerCoord){
+        // 计算实际坐标
         double t;
         
         // 点的原始坐标
@@ -187,6 +192,7 @@ void CalCoord(struct ExprNode*HorPtr, struct ExprNode*VerPtr, double &HorCoord, 
 }
 
 void Clear(){
+        // 清空这一张图
         plt::cla();
         plt::xkcd();
         plt::xlim(-10,1010);
@@ -195,6 +201,34 @@ void Clear(){
         char str[20];
         sprintf(str,"./picture/%d.png",filename);
         cout << "Saving result to " << filename <<".png"<<endl;
+        plt::save(str);
+}
+
+void Next(){
+        // 绘制下一张图
         filename++;
+}
+
+void AddTitle(string title){
+        // 增加标题
+        title.erase(0,1);
+        title.pop_back();
+        plt::title(title);
+        //给文件名字
+        char str[20];
+        sprintf(str,"./picture/%d.png",filename);
+        // cout<<str<<endl;
+        cout << "Saving result to " << filename <<".png"<<endl;
+        plt::save(str);
+}
+
+void AddComment(double x_coord, double y_coord, string comment){
+        // 增加注释
+        plt::text(x_coord, y_coord, comment);
+        //给文件名字
+        char str[20];
+        sprintf(str,"./picture/%d.png",filename);
+        // cout<<str<<endl;
+        cout << "Saving result to " << filename <<".png"<<endl;
         plt::save(str);
 }
