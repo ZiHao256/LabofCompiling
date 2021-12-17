@@ -18,6 +18,7 @@ extern int yywrap(void);
 extern void yyerror(const char *str);
 extern FILE* yyin;
 extern FILE* yyout;
+extern unsigned char* yytext;
 
 
 // 变量定义
@@ -52,6 +53,10 @@ string line = "-";
 %%
     Program: Program Statement SEMICO
             |
+            | error
+                {
+
+                }
             ;
     
     Statement: FOR T FROM Expression TO Expression STEP Expression DRAW L_BRACKET Expression COMMA Expression R_BRACKET
@@ -59,12 +64,12 @@ string line = "-";
                                 draw_start = GetExprValue($4);
                                 draw_end = GetExprValue($6);
                                 draw_step = GetExprValue($8);
-                                // std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
-                                // printf("\nrot = %f\n",rot);
-                                // printf("\ndraw_start = %f, draw_end = %f,draw_step = %f\n", draw_start, draw_end, draw_step);                            
-                                // printf("\norigin_x = %f, origin_y = %f\n",origin_x,origin_y);
-                                // printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
-                                // std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
+                                std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
+                                printf("\nrot = %f\n",rot);
+                                printf("\ndraw_start = %f, draw_end = %f,draw_step = %f\n", draw_start, draw_end, draw_step);                            
+                                printf("\norigin_x = %f, origin_y = %f\n",origin_x,origin_y);
+                                printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
+                                std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
                                 std::cout<<"\n\n\n——————————————————————开始绘画——————————————————————————"<<std::endl;
                                 DrawLoop(draw_start, draw_end, draw_step, $11, $13);
                                 std::cout<<"\n————————————————————————————————————————————————————————\n\n"<<std::endl;
@@ -165,7 +170,12 @@ string line = "-";
                         }
                 ;
 
-    Expression: T
+    Expression: 
+            ERRTOKEN                              
+                {
+                        yyerror("error token!\n");
+                }
+            | T
                 {
                         $$ = MakeExprNode(T);
                 }
@@ -221,7 +231,7 @@ string line = "-";
                 {
                         $$ = $2;
                 }
-            | MINUS Expression %prec UNSUB
+            | MINUS Expression %prec UNSUB 
                 {
                         $$ = MakeExprNode(MINUS, MakeExprNode(CONST_ID, 0.0),$2);
                         std::cout<<"\n\n\n——————————————————————————ExprTree——————————————————————————"<<std::endl;
@@ -232,10 +242,6 @@ string line = "-";
             | FUNC L_BRACKET Expression R_BRACKET   
                 {
                         $$ = MakeExprNode(FUNC, $3, token.FuncPtr);
-                }
-            | ERRTOKEN                              
-                {
-                        yyerror("error token!\n");
                 }
             ;
 
@@ -266,6 +272,6 @@ int main(int argc, char ** argv){
 }
     // 错误处理
 void yyerror(const char *str){
-    std::cerr<<"\n!!!!!第"<<LineNo<<"行:"<< str <<std::endl;
+        std::cerr<<"\n!!!!!第"<<LineNo<<"行:"<< str <<std::endl;
 }
 

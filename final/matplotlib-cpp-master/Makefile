@@ -169,46 +169,6 @@ funcdraw/fast:
 	$(MAKE) -f CMakeFiles/funcdraw.dir/build.make CMakeFiles/funcdraw.dir/build
 .PHONY : funcdraw/fast
 
-#=============================================================================
-# Target rules for targets named hello
-
-# Build rule for target.
-hello: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 hello
-.PHONY : hello
-
-# fast build rule for target.
-hello/fast:
-	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/build
-.PHONY : hello/fast
-
-src/hello.o: src/hello.cpp.o
-
-.PHONY : src/hello.o
-
-# target to build an object file
-src/hello.cpp.o:
-	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/src/hello.cpp.o
-.PHONY : src/hello.cpp.o
-
-src/hello.i: src/hello.cpp.i
-
-.PHONY : src/hello.i
-
-# target to preprocess a source file
-src/hello.cpp.i:
-	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/src/hello.cpp.i
-.PHONY : src/hello.cpp.i
-
-src/hello.s: src/hello.cpp.s
-
-.PHONY : src/hello.s
-
-# target to generate assembly for a file
-src/hello.cpp.s:
-	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/src/hello.cpp.s
-.PHONY : src/hello.cpp.s
-
 src/lex.yy.o: src/lex.yy.cpp.o
 
 .PHONY : src/lex.yy.o
@@ -302,11 +262,7 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... funcdraw"
-	@echo "... hello"
 	@echo "... edit_cache"
-	@echo "... src/hello.o"
-	@echo "... src/hello.i"
-	@echo "... src/hello.s"
 	@echo "... src/lex.yy.o"
 	@echo "... src/lex.yy.i"
 	@echo "... src/lex.yy.s"

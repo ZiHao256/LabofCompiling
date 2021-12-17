@@ -16,11 +16,10 @@ unsigned int LineNo = 1;        // 记录行号
 struct Token token;
 
 %}
-    // 状态
-%x comment_entry 
+
 
 number      [0-9]+(\.[0-9]*)?
-ws          [\t]+
+ws          [ \t]+
 newline     \n
 comments    "//"|"--"[^\n]*
 str         \<.*\>
@@ -36,7 +35,7 @@ str         \<.*\>
     /* 注释和空白 */
 {comments}                      {printf("\n\n\n————————————————————————————注释————————————————————————————\n"); printf("%s",yytext);printf("\n————————————————————————————————————————————————————————————\n\n\n");}
 {ws}                            {;}
-{newline}                       {LineNo++; printf("%d\n",LineNo);}
+{newline}                       {LineNo++;}
 
     /* 字符串 */
 {str}                           {token.type = STR; token.lexeme = yytext; printf("(STR,\"%s\",0.0,NULL)",yytext); return (STR);}

@@ -87,6 +87,7 @@ extern int yywrap(void);
 extern void yyerror(const char *str);
 extern FILE* yyin;
 extern FILE* yyout;
+extern unsigned char* yytext;
 
 
 // 变量定义
@@ -102,7 +103,7 @@ string line = "-";
 
 
 
-#line 106 "y.tab.cpp"
+#line 107 "y.tab.cpp"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -513,18 +514,18 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  2
+#define YYFINAL  3
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   165
+#define YYLAST   187
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  47
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  6
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  32
+#define YYNRULES  33
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  87
+#define YYNSTATES  88
 
 #define YYUNDEFTOK  2
 #define YYMAXUTOK   301
@@ -576,10 +577,10 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    53,    53,    54,    57,    73,    85,    96,   106,   114,
-     120,   121,   122,   128,   136,   140,   144,   148,   154,   158,
-     162,   168,   172,   176,   184,   192,   200,   208,   216,   220,
-     224,   232,   236
+       0,    54,    54,    55,    56,    62,    78,    90,   101,   111,
+     119,   125,   126,   127,   133,   141,   145,   149,   153,   159,
+     163,   167,   174,   178,   182,   186,   194,   202,   210,   218,
+     226,   230,   234,   242
 };
 #endif
 
@@ -616,24 +617,24 @@ static const yytype_int16 yytoknum[] =
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
 
-#define YYTABLE_NINF (-1)
+#define YYTABLE_NINF (-4)
 
 #define yytable_value_is_error(Yyn) \
   0
 
   /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
      STATE-NUM.  */
-static const yytype_int8 yypact[] =
+static const yytype_int16 yypact[] =
 {
-     -40,    41,   -40,    -3,     0,     6,     8,   -40,   -40,     9,
-      10,    29,    33,    18,    42,    26,    34,    36,   -13,    -9,
-      23,    40,   -40,    36,    36,    36,   -40,    58,   -40,    36,
-     -40,    36,    36,   -31,   -40,   -40,   -40,   -40,   -40,   -40,
-     -40,   -40,   -40,   -40,    36,    30,    57,    63,    36,    92,
-       2,     2,    36,    36,    36,    36,    36,    70,    36,    36,
-      36,    99,   -40,   -39,   -39,     2,     2,     2,    36,    46,
-     105,   112,   -40,    79,    36,   -40,   -40,    44,    24,    59,
-      61,   -40,    36,    85,    36,   119,   -40
+      41,   -40,    55,   -40,    -3,     0,     6,     8,   -40,   -40,
+       9,    10,    20,    24,    13,    33,    19,    23,    70,   -13,
+      -9,     5,    25,   -40,    70,    70,    70,   -40,    26,   -40,
+      70,   -40,    70,    70,   -31,   -40,   -40,   -40,   -40,   -40,
+     -40,   -40,   -40,   -40,   -40,    70,    57,    79,    85,    70,
+     114,     2,     2,    70,    70,    70,    70,    70,    94,    70,
+      70,    70,   121,   -40,   -39,   -39,     2,     2,     2,    70,
+      63,   127,   134,   -40,   101,    70,   -40,   -40,    38,    72,
+      37,    34,   -40,    70,   107,    70,   141,   -40
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -641,27 +642,27 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-       3,     0,     1,     0,     0,     0,     0,    12,    13,     0,
+       0,     4,     0,     1,     0,     0,     0,     0,    13,    14,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     2,     0,     0,     0,    22,     0,    21,     0,
-      32,     0,     0,     7,    14,    15,    16,    17,    10,    18,
-      19,    20,    11,     8,     0,     0,     0,     0,     0,     0,
-      29,    30,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,    28,    23,    24,    25,    26,    27,     0,     0,
-       0,     0,    31,     0,     0,     5,     6,     0,     0,     0,
-       0,     9,     0,     0,     0,     0,     4
+       0,     0,     0,     2,     0,     0,     0,    24,     0,    23,
+       0,    22,     0,     0,     8,    15,    16,    17,    18,    11,
+      19,    20,    21,    12,     9,     0,     0,     0,     0,     0,
+       0,    31,    32,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,    30,    25,    26,    27,    28,    29,     0,
+       0,     0,     0,    33,     0,     0,     6,     7,     0,     0,
+       0,     0,    10,     0,     0,     0,     0,     5
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -40,   -40,   -40,   -40,   -40,   -23
+     -40,   -40,   -40,   -40,   -40,   -24
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     1,    13,    38,    42,    33
+      -1,     2,    14,    39,    43,    34
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -669,77 +670,81 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-      45,    46,    47,    14,    54,    55,    49,    56,    50,    51,
-      52,    53,    54,    55,    15,    56,    34,    35,    36,    37,
-      16,    57,    17,    18,    19,    61,    39,    40,    41,    63,
-      64,    65,    66,    67,    80,    69,    70,    71,    58,    26,
-      27,     2,    28,    20,    22,    73,     3,    21,    56,    23,
-      24,    78,     4,     5,     6,    74,     7,     8,    25,    83,
-      29,    85,    43,    30,    44,    52,    53,    54,    55,     9,
-      56,    52,    53,    54,    55,    10,    56,    31,    32,    11,
-      59,    12,    48,    79,    81,    82,    60,    52,    53,    54,
-      55,     0,    56,    68,     0,     0,     0,     0,    52,    53,
-      54,    55,    77,    56,    52,    53,    54,    55,    84,    56,
-       0,    52,    53,    54,    55,     0,    56,    62,     0,     0,
-      52,    53,    54,    55,    72,    56,    52,    53,    54,    55,
-      75,    56,     0,    52,    53,    54,    55,    76,    56,     0,
-      52,    53,    54,    55,    86,    56,    52,    53,    54,    55,
-       0,    56,     0,    52,    53,    54,    55,     0,    56,     0,
-      52,    53,    54,    55,     0,    56
+      46,    47,    48,    15,    55,    56,    50,    57,    51,    52,
+      53,    54,    55,    56,    16,    57,    35,    36,    37,    38,
+      17,    58,    18,    19,    20,    62,    40,    41,    42,    64,
+      65,    66,    67,    68,    21,    70,    71,    72,    22,    23,
+      24,    -3,     1,    25,    44,    74,    -3,    26,    57,    45,
+      49,    79,    -3,    -3,    -3,     3,    -3,    -3,    83,    84,
+       4,    86,    82,     0,     0,    59,     5,     6,     7,    -3,
+       8,     9,    75,    27,    28,    -3,    29,    80,     0,    -3,
+       0,    -3,    81,    10,     0,     0,     0,     0,     0,    11,
+       0,     0,     0,    12,    30,    13,     0,    31,    53,    54,
+      55,    56,    60,    57,    53,    54,    55,    56,    61,    57,
+       0,    32,    33,    53,    54,    55,    56,    69,    57,     0,
+      53,    54,    55,    56,    78,    57,    53,    54,    55,    56,
+      85,    57,     0,     0,     0,    53,    54,    55,    56,    63,
+      57,     0,    53,    54,    55,    56,    73,    57,    53,    54,
+      55,    56,    76,    57,     0,    53,    54,    55,    56,    77,
+      57,     0,    53,    54,    55,    56,    87,    57,    53,    54,
+      55,    56,     0,    57,     0,    53,    54,    55,    56,     0,
+      57,     0,    53,    54,    55,    56,     0,    57
 };
 
 static const yytype_int8 yycheck[] =
 {
-      23,    24,    25,     6,    43,    44,    29,    46,    31,    32,
+      24,    25,    26,     6,    43,    44,    30,    46,    32,    33,
       41,    42,    43,    44,    14,    46,    29,    30,    31,    32,
-      14,    44,    14,    14,    14,    48,    35,    36,    37,    52,
-      53,    54,    55,    56,    10,    58,    59,    60,     8,     3,
-       4,     0,     6,    14,    26,    68,     5,    14,    46,     7,
-      24,    74,    11,    12,    13,     9,    15,    16,    24,    82,
-      24,    84,    39,    27,    24,    41,    42,    43,    44,    28,
-      46,    41,    42,    43,    44,    34,    46,    41,    42,    38,
-      23,    40,    24,    39,    25,    24,    23,    41,    42,    43,
-      44,    -1,    46,    23,    -1,    -1,    -1,    -1,    41,    42,
+      14,    45,    14,    14,    14,    49,    35,    36,    37,    53,
+      54,    55,    56,    57,    14,    59,    60,    61,    14,    26,
+       7,     0,     1,    24,    39,    69,     5,    24,    46,    24,
+      24,    75,    11,    12,    13,     0,    15,    16,    24,    83,
+       5,    85,    25,    -1,    -1,     8,    11,    12,    13,    28,
+      15,    16,     9,     3,     4,    34,     6,    39,    -1,    38,
+      -1,    40,    10,    28,    -1,    -1,    -1,    -1,    -1,    34,
+      -1,    -1,    -1,    38,    24,    40,    -1,    27,    41,    42,
       43,    44,    23,    46,    41,    42,    43,    44,    23,    46,
-      -1,    41,    42,    43,    44,    -1,    46,    25,    -1,    -1,
-      41,    42,    43,    44,    25,    46,    41,    42,    43,    44,
-      25,    46,    -1,    41,    42,    43,    44,    25,    46,    -1,
-      41,    42,    43,    44,    25,    46,    41,    42,    43,    44,
-      -1,    46,    -1,    41,    42,    43,    44,    -1,    46,    -1,
-      41,    42,    43,    44,    -1,    46
+      -1,    41,    42,    41,    42,    43,    44,    23,    46,    -1,
+      41,    42,    43,    44,    23,    46,    41,    42,    43,    44,
+      23,    46,    -1,    -1,    -1,    41,    42,    43,    44,    25,
+      46,    -1,    41,    42,    43,    44,    25,    46,    41,    42,
+      43,    44,    25,    46,    -1,    41,    42,    43,    44,    25,
+      46,    -1,    41,    42,    43,    44,    25,    46,    41,    42,
+      43,    44,    -1,    46,    -1,    41,    42,    43,    44,    -1,
+      46,    -1,    41,    42,    43,    44,    -1,    46
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,    48,     0,     5,    11,    12,    13,    15,    16,    28,
-      34,    38,    40,    49,     6,    14,    14,    14,    14,    14,
-      14,    14,    26,     7,    24,    24,     3,     4,     6,    24,
-      27,    41,    42,    52,    29,    30,    31,    32,    50,    35,
-      36,    37,    51,    39,    24,    52,    52,    52,    24,    52,
-      52,    52,    41,    42,    43,    44,    46,    52,     8,    23,
-      23,    52,    25,    52,    52,    52,    52,    52,    23,    52,
-      52,    52,    25,    52,     9,    25,    25,    23,    52,    39,
-      10,    25,    24,    52,    23,    52,    25
+       0,     1,    48,     0,     5,    11,    12,    13,    15,    16,
+      28,    34,    38,    40,    49,     6,    14,    14,    14,    14,
+      14,    14,    14,    26,     7,    24,    24,     3,     4,     6,
+      24,    27,    41,    42,    52,    29,    30,    31,    32,    50,
+      35,    36,    37,    51,    39,    24,    52,    52,    52,    24,
+      52,    52,    52,    41,    42,    43,    44,    46,    52,     8,
+      23,    23,    52,    25,    52,    52,    52,    52,    52,    23,
+      52,    52,    52,    25,    52,     9,    25,    25,    23,    52,
+      39,    10,    25,    24,    52,    23,    52,    25
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    47,    48,    48,    49,    49,    49,    49,    49,    49,
-      49,    49,    49,    49,    50,    50,    50,    50,    51,    51,
-      51,    52,    52,    52,    52,    52,    52,    52,    52,    52,
-      52,    52,    52
+       0,    47,    48,    48,    48,    49,    49,    49,    49,    49,
+      49,    49,    49,    49,    49,    50,    50,    50,    50,    51,
+      51,    51,    52,    52,    52,    52,    52,    52,    52,    52,
+      52,    52,    52,    52
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     3,     0,    14,     7,     7,     3,     3,     9,
-       3,     3,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     3,     3,     3,     3,     3,     3,     2,
-       2,     4,     1
+       0,     2,     3,     0,     1,    14,     7,     7,     3,     3,
+       9,     3,     3,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     3,     3,     3,     3,     3,
+       3,     2,     2,     4
 };
 
 
@@ -1435,27 +1440,35 @@ yyreduce:
   switch (yyn)
     {
   case 4:
-#line 58 "parser.y"
+#line 57 "parser.y"
+                {
+
+                }
+#line 1448 "y.tab.cpp"
+    break;
+
+  case 5:
+#line 63 "parser.y"
                     {
                                 draw_start = GetExprValue(yyvsp[-10]);
                                 draw_end = GetExprValue(yyvsp[-8]);
                                 draw_step = GetExprValue(yyvsp[-6]);
-                                // std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
-                                // printf("\nrot = %f\n",rot);
-                                // printf("\ndraw_start = %f, draw_end = %f,draw_step = %f\n", draw_start, draw_end, draw_step);                            
-                                // printf("\norigin_x = %f, origin_y = %f\n",origin_x,origin_y);
-                                // printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
-                                // std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
+                                std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
+                                printf("\nrot = %f\n",rot);
+                                printf("\ndraw_start = %f, draw_end = %f,draw_step = %f\n", draw_start, draw_end, draw_step);                            
+                                printf("\norigin_x = %f, origin_y = %f\n",origin_x,origin_y);
+                                printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
+                                std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
                                 std::cout<<"\n\n\n——————————————————————开始绘画——————————————————————————"<<std::endl;
                                 DrawLoop(draw_start, draw_end, draw_step, yyvsp[-3], yyvsp[-1]);
                                 std::cout<<"\n————————————————————————————————————————————————————————\n\n"<<std::endl;
                                 
                     }
-#line 1455 "y.tab.cpp"
+#line 1468 "y.tab.cpp"
     break;
 
-  case 5:
-#line 74 "parser.y"
+  case 6:
+#line 79 "parser.y"
                     {
                             origin_x = GetExprValue(yyvsp[-3]);
                             origin_y = GetExprValue(yyvsp[-1]);
@@ -1467,11 +1480,11 @@ yyreduce:
                         //     std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
 
                     }
-#line 1471 "y.tab.cpp"
+#line 1484 "y.tab.cpp"
     break;
 
-  case 6:
-#line 86 "parser.y"
+  case 7:
+#line 91 "parser.y"
                     {
                             scale_x = GetExprValue(yyvsp[-3]);
                             scale_y = GetExprValue(yyvsp[-1]);
@@ -1482,11 +1495,11 @@ yyreduce:
                         //     printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
                         //     std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
                     }
-#line 1486 "y.tab.cpp"
+#line 1499 "y.tab.cpp"
     break;
 
-  case 7:
-#line 97 "parser.y"
+  case 8:
+#line 102 "parser.y"
                     {
                         rot = GetExprValue(yyvsp[0]);
                         //     std::cout<<"\n——————————————————————变量的值——————————————————————————"<<std::endl;
@@ -1496,11 +1509,11 @@ yyreduce:
                         //     printf("\nscale_x = %f, scale_y = %f\n",scale_x,scale_y);
                         //     std::cout<<"\n————————————————————————————————————————————————————————"<<std::endl;
                     }
-#line 1500 "y.tab.cpp"
+#line 1513 "y.tab.cpp"
     break;
 
-  case 8:
-#line 107 "parser.y"
+  case 9:
+#line 112 "parser.y"
                         {
 
                                 std::cout<<"\n\n\n——————————————————————增加标题——————————————————————————"<<std::endl;
@@ -1508,113 +1521,121 @@ yyreduce:
                                 std::cout<<"\n————————————————————————————————————————————————————————\n\n"<<std::endl;                            
                                 
                         }
-#line 1512 "y.tab.cpp"
+#line 1525 "y.tab.cpp"
     break;
 
-  case 9:
-#line 115 "parser.y"
+  case 10:
+#line 120 "parser.y"
                         {
                                 std::cout<<"\n\n\n——————————————————————增加注释——————————————————————————"<<std::endl;
                                 AddComment(GetExprValue(yyvsp[-5]), GetExprValue(yyvsp[-3]), token.lexeme);
                                 std::cout<<"\n————————————————————————————————————————————————————————\n\n"<<std::endl;                                                            
                         }
-#line 1522 "y.tab.cpp"
+#line 1535 "y.tab.cpp"
     break;
 
-  case 12:
-#line 123 "parser.y"
+  case 13:
+#line 128 "parser.y"
                         {
                                 std::cout<<"\n\n\n——————————————————————开始清图——————————————————————————"<<std::endl;
                                 Clear();
                                 std::cout<<"\n————————————————————————————————————————————————————————\n\n"<<std::endl;                            
                         }
-#line 1532 "y.tab.cpp"
+#line 1545 "y.tab.cpp"
     break;
 
-  case 13:
-#line 129 "parser.y"
+  case 14:
+#line 134 "parser.y"
                         {
                                 std::cout<<"\n\n\n——————————————————————绘制下一张图——————————————————————"<<std::endl;
                                 Next();
                                 std::cout<<"\n————————————————————————————————————————————————————————\n\n"<<std::endl;                                                           
                         }
-#line 1542 "y.tab.cpp"
-    break;
-
-  case 14:
-#line 137 "parser.y"
-                        {
-                                color = "r";
-                        }
-#line 1550 "y.tab.cpp"
+#line 1555 "y.tab.cpp"
     break;
 
   case 15:
-#line 141 "parser.y"
+#line 142 "parser.y"
                         {
-                                color = "g";
+                                color = "r";
                         }
-#line 1558 "y.tab.cpp"
+#line 1563 "y.tab.cpp"
     break;
 
   case 16:
-#line 145 "parser.y"
+#line 146 "parser.y"
                         {
-                                color = "b";
+                                color = "g";
                         }
-#line 1566 "y.tab.cpp"
+#line 1571 "y.tab.cpp"
     break;
 
   case 17:
-#line 149 "parser.y"
+#line 150 "parser.y"
                         {
-                                color = "k";
+                                color = "b";
                         }
-#line 1574 "y.tab.cpp"
+#line 1579 "y.tab.cpp"
     break;
 
   case 18:
-#line 155 "parser.y"
+#line 154 "parser.y"
                         {
-                                line = "-";
+                                color = "k";
                         }
-#line 1582 "y.tab.cpp"
+#line 1587 "y.tab.cpp"
     break;
 
   case 19:
-#line 159 "parser.y"
+#line 160 "parser.y"
                         {
-                                line = "--";
+                                line = "-";
                         }
-#line 1590 "y.tab.cpp"
+#line 1595 "y.tab.cpp"
     break;
 
   case 20:
-#line 163 "parser.y"
+#line 164 "parser.y"
                         {
-                                line = ":";
+                                line = "--";
                         }
-#line 1598 "y.tab.cpp"
+#line 1603 "y.tab.cpp"
     break;
 
   case 21:
-#line 169 "parser.y"
-                {
-                        yyval = MakeExprNode(T);
-                }
-#line 1606 "y.tab.cpp"
+#line 168 "parser.y"
+                        {
+                                line = ":";
+                        }
+#line 1611 "y.tab.cpp"
     break;
 
   case 22:
-#line 173 "parser.y"
+#line 175 "parser.y"
                 {
-                        yyval = MakeExprNode(CONST_ID, token.value);
+                        yyerror("error token!\n");
                 }
-#line 1614 "y.tab.cpp"
+#line 1619 "y.tab.cpp"
     break;
 
   case 23:
-#line 177 "parser.y"
+#line 179 "parser.y"
+                {
+                        yyval = MakeExprNode(T);
+                }
+#line 1627 "y.tab.cpp"
+    break;
+
+  case 24:
+#line 183 "parser.y"
+                {
+                        yyval = MakeExprNode(CONST_ID, token.value);
+                }
+#line 1635 "y.tab.cpp"
+    break;
+
+  case 25:
+#line 187 "parser.y"
                 {
                         yyval = MakeExprNode(PLUS, yyvsp[-2], yyvsp[0]);
                         std::cout<<"\n\n\n——————————————————————————ExprTree——————————————————————————"<<std::endl;
@@ -1622,11 +1643,11 @@ yyreduce:
                         TravelTree(yyval, indent);
                         std::cout<<"\n————————————————————————————————————————————————————————————\n\n"<<std::endl;
                 }
-#line 1626 "y.tab.cpp"
+#line 1647 "y.tab.cpp"
     break;
 
-  case 24:
-#line 185 "parser.y"
+  case 26:
+#line 195 "parser.y"
                 {
                         yyval = MakeExprNode(MINUS, yyvsp[-2], yyvsp[0]);
                         std::cout<<"\n\n\n——————————————————————————ExprTree——————————————————————————"<<std::endl;
@@ -1634,11 +1655,11 @@ yyreduce:
                         TravelTree(yyval, indent);
                         std::cout<<"\n————————————————————————————————————————————————————————————\n\n"<<std::endl;
                 }
-#line 1638 "y.tab.cpp"
+#line 1659 "y.tab.cpp"
     break;
 
-  case 25:
-#line 193 "parser.y"
+  case 27:
+#line 203 "parser.y"
                 {
                         yyval = MakeExprNode(MUL, yyvsp[-2], yyvsp[0]);
                         std::cout<<"\n\n\n——————————————————————————ExprTree——————————————————————————"<<std::endl;
@@ -1646,11 +1667,11 @@ yyreduce:
                         TravelTree(yyval, indent);
                         std::cout<<"\n————————————————————————————————————————————————————————————\n\n"<<std::endl;
                 }
-#line 1650 "y.tab.cpp"
+#line 1671 "y.tab.cpp"
     break;
 
-  case 26:
-#line 201 "parser.y"
+  case 28:
+#line 211 "parser.y"
                 {
                         yyval = MakeExprNode(DIV, yyvsp[-2], yyvsp[0]);
                         std::cout<<"\n\n\n——————————————————————————ExprTree——————————————————————————"<<std::endl;
@@ -1658,11 +1679,11 @@ yyreduce:
                         TravelTree(yyval, indent);
                         std::cout<<"\n————————————————————————————————————————————————————————————\n\n"<<std::endl;
                 }
-#line 1662 "y.tab.cpp"
+#line 1683 "y.tab.cpp"
     break;
 
-  case 27:
-#line 209 "parser.y"
+  case 29:
+#line 219 "parser.y"
                 {
                         yyval = MakeExprNode(POWER, yyvsp[-2], yyvsp[0]);
                         std::cout<<"\n\n\n——————————————————————————ExprTree——————————————————————————"<<std::endl;
@@ -1670,27 +1691,27 @@ yyreduce:
                         TravelTree(yyval, indent);
                         std::cout<<"\n————————————————————————————————————————————————————————————\n\n"<<std::endl;
                 }
-#line 1674 "y.tab.cpp"
-    break;
-
-  case 28:
-#line 217 "parser.y"
-                {
-                        yyval = yyvsp[-1];
-                }
-#line 1682 "y.tab.cpp"
-    break;
-
-  case 29:
-#line 221 "parser.y"
-                {
-                        yyval = yyvsp[0];
-                }
-#line 1690 "y.tab.cpp"
+#line 1695 "y.tab.cpp"
     break;
 
   case 30:
-#line 225 "parser.y"
+#line 227 "parser.y"
+                {
+                        yyval = yyvsp[-1];
+                }
+#line 1703 "y.tab.cpp"
+    break;
+
+  case 31:
+#line 231 "parser.y"
+                {
+                        yyval = yyvsp[0];
+                }
+#line 1711 "y.tab.cpp"
+    break;
+
+  case 32:
+#line 235 "parser.y"
                 {
                         yyval = MakeExprNode(MINUS, MakeExprNode(CONST_ID, 0.0),yyvsp[0]);
                         std::cout<<"\n\n\n——————————————————————————ExprTree——————————————————————————"<<std::endl;
@@ -1698,27 +1719,19 @@ yyreduce:
                         TravelTree(yyval, indent);
                         std::cout<<"\n————————————————————————————————————————————————————————————\n\n"<<std::endl;
                 }
-#line 1702 "y.tab.cpp"
+#line 1723 "y.tab.cpp"
     break;
 
-  case 31:
-#line 233 "parser.y"
+  case 33:
+#line 243 "parser.y"
                 {
                         yyval = MakeExprNode(FUNC, yyvsp[-1], token.FuncPtr);
                 }
-#line 1710 "y.tab.cpp"
-    break;
-
-  case 32:
-#line 237 "parser.y"
-                {
-                        yyerror("error token!\n");
-                }
-#line 1718 "y.tab.cpp"
+#line 1731 "y.tab.cpp"
     break;
 
 
-#line 1722 "y.tab.cpp"
+#line 1735 "y.tab.cpp"
 
       default: break;
     }
@@ -1950,7 +1963,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 243 "parser.y"
+#line 249 "parser.y"
 
    // 函数定义
 
@@ -1977,6 +1990,6 @@ int main(int argc, char ** argv){
 }
     // 错误处理
 void yyerror(const char *str){
-    std::cerr<<"\n!!!!!第"<<LineNo<<"行:"<< str <<std::endl;
+        std::cerr<<"\n!!!!!第"<<LineNo<<"行:"<< str <<std::endl;
 }
 

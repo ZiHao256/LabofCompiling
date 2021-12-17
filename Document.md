@@ -2,11 +2,12 @@
 title: Document
 ---
 
-* C ++
+# 实验环境
 
-
-
-* lex / yacc
+* 平台：Windows Subsystem for Linux 2: Ubuntu20.04
+* 工具：flex+bison
+* 语言：C++
+* 绘图库：matplotlib-cpp
 
 # 词法分析
 
@@ -154,14 +155,15 @@ Program: Program Statement
 
 
 
-
-
-
 ## 语义分析
 
+* 负号优先级
+  * *使用%pre UMINUS，可以让'-'拥有UMINUS的优先级。从而使得表达出"负号"的效果*
 * 导致段错误
   * 忘记在语义动作中将 创建的节点地址给 $$
   * TravelTree中 忘记break
+
+
 
 ## 基本功能
 
@@ -183,24 +185,6 @@ Program: Program Statement
 
 
 
-### 错误处理
-
-![image-20211217100405028](Document.assets/image-20211217100405028.png)
-
-
-
-![image-20211217100842285](Document.assets/image-20211217100842285.png)
-
-
-
-![image-20211217102851504](Document.assets/image-20211217102851504.png)
-
-
-
-![image-20211217103022792](Document.assets/image-20211217103022792.png)
-
-* 行号：全局变量
-
 
 
 ## 附加功能
@@ -214,7 +198,7 @@ Program: Program Statement
 ### 增加注释
 
 * 借助matplotlib的：
-  * plt::text(double,double,string)
+  * nplt::text(double,double,string)
   * COMMENT IS (Expr,Expr,STR)
 
 
@@ -237,7 +221,7 @@ Program: Program Statement
 "r"
 "g"
 "b"
-
+"y"
 ```
 
 
@@ -288,9 +272,7 @@ Program: Program Statement
 
 
 
-## 会用CMake
-
-
+## CMake
 
 
 
