@@ -128,7 +128,7 @@ Program: Program Statement
 
 
 
-# 基于lex / yacc
+# 基于felx/bison
 
 参考：
 
@@ -274,8 +274,6 @@ Program: Program Statement
 
 ## CMake
 
-
-
 **问题：**
 
 * multiple definition of `token'; /tmp/ccPN24xx.o:(.bss+0x40): first defined here
@@ -302,8 +300,8 @@ Program: Program Statement
 
 ## WSL2下
 
-* xrdp
-* xfce4
+* xrdp：远程桌面连接
+* xfce4：桌面系统
 
 
 
@@ -344,8 +342,8 @@ Program: Program Statement
 ## 遇到的问题
 
 * lex前导空白
-* 语法不完整：FOR
-* C/C++调用Python绘画：matplotlib-cpp项目
+* 语法不完整：FO R
+* **C/C++调用Python绘画包：matplotlib-cpp项目**
   * 基于C++调用Python的方法将matplotlib封装了一层
   * Windows:
     * [c++调用matplotlib(一) - 芒果的博客 - 芒果的个人博客 (mangoroom.cn)](https://mangoroom.cn/cpp/call-matplotlib-on-cpp.html)
@@ -367,12 +365,12 @@ Program: Program Statement
   * error: field ‘OpCode’ has incomplete type
   * 有定义，但是所在头文件没有被包含文件A中，仅仅在A中声明了，也属于不完整类型
   * 使用强制类型转换吧
-* 一元负号的优先级和右结合
+* **一元负号的优先级和右结合**
   * 怎么在语法树中表示
 * 求表达式的值？
   * switch
   * 递归
-* lex.yy.cpp:590:16: error: conflicting declaration of ‘int yywrap()’ with ‘C’ linkage
+* **lex.yy.cpp:590:16: error: conflicting declaration of ‘int yywrap()’ with ‘C’ linkage**
   scanner.l:11:12: note: previous declaration with ‘C++’ linkage
   * 在C++环境下使用C函数的时候，常常会出现编译器无法找到obj模块中的C函数定义，从而导致链接失败的情况，这是因为C++语言在编译的时候为了解决函数的多态问题，会将函数名和参数联合起来生成一个中间的函数名称，而C语言则不会，因此会造成链接时找不到对应函数的情况，此时C函数就需要用extern “C”进行链接指定，这告诉编译器，请保持我的名称，不要给我生成用于链接的中间函数名。
 

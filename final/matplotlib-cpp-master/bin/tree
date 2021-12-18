@@ -2,7 +2,7 @@
 
 rot is 0;			-- 设置旋转角度(不旋转)
 scale is (1, 1);		-- 设置横坐标和纵坐标的比例
-color is green;
+--color is green;
 --line is dotted;
 
 --第一阶段

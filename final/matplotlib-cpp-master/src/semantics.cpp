@@ -21,6 +21,9 @@ void TravelTree(struct ExprNode * root, int indent);
 void DrawLoop(double draw_start, double draw_end, double draw_step, struct ExprNode* HorPtr, struct ExprNode* VerPtr);
 void CalCoord(struct ExprNode*HorPtr, struct ExprNode*VerPtr, double &HorCoord, double &VerCoord);
 void Clear();
+void Next();
+void AddTitle(string title);
+void AddComment(double x_coord, double y_coord, string comment);
 
 // 变量定义
 int filename=0; // 绘制图片的文件名
@@ -199,7 +202,6 @@ void CalCoord(struct ExprNode*HorPtr, struct ExprNode*VerPtr, double &HorCoord, 
 void Clear(){
         // 清空这一张图
         plt::cla();
-        plt::xkcd();
         plt::xlim(-10,1010);
         plt::ylim(-10,1010);
         //给文件名字
