@@ -152,7 +152,7 @@ void DrawLoop(double draw_start, double draw_end, double draw_step, struct ExprN
         x.at(n) = x_coord;
         y.at(n) = y_coord;        
         
-        // plt::xkcd(); //漫画效果
+        plt::xkcd(); //漫画效果
         
         // 绘画一组坐标点
         plt::xlim(-10,1010);

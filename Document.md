@@ -9,6 +9,29 @@ title: Document
 * 语言：C++
 * 绘图库：matplotlib-cpp
 
+```
+.
+
+├── CMakeLists.txt
+├── Makefile
+├── bin
+│   └── funcdraw
+├── matplotlibcpp.h
+├── picture
+│   └── 0.png
+└── src
+    ├── Makefile
+    ├── lex.yy.cpp
+    ├── main.hpp
+    ├── parser.y
+    ├── scanner.l
+    ├── semantics.cpp
+    ├── y.tab.cpp
+    └── y.tab.hpp
+```
+
+
+
 # 词法分析
 
 * letter = [a-zA-Z_]
@@ -95,7 +118,48 @@ title: Document
 ## 语法
 
 ```
-Program: Program Statement 
+	Program: Program Statement SEMICO
+            |
+            ;
+    
+    Statement: FOR T FROM Expression TO Expression STEP Expression DRAW L_BRACKET Expression COMMA Expression R_BRACKET
+            | ORIGIN IS L_BRACKET Expression COMMA Expression R_BRACKET
+            | SCALE IS L_BRACKET Expression COMMA Expression R_BRACKET
+            | ROT IS Expression
+            | TITLE IS STR
+            | COMMENT IS L_BRACKET Expression COMMA Expression COMMA STR R_BRACKET
+            | COLOR IS ColorChoice
+            | LINE IS LineChoice
+            | CLEAR
+            | NEXT
+            ;
+
+    ColorChoice: RED
+                | GREEN
+                | BLUE
+                | BLACK
+                ;
+
+    LineChoice: SOLID
+                | DASHED
+                | DOTTED
+                ;
+
+    Expression: 
+            ERRTOKEN                              
+            | T
+            | CONST_ID             
+            | Expression PLUS Expression
+            | Expression MINUS Expression
+            | Expression MUL Expression
+            | Expression DIV Expression
+            | Expression POWER Expression
+            | L_BRACKET Expression R_BRACKET
+            | PLUS Expression %prec UNSUB
+            | MINUS Expression %prec UNSUB 
+            | FUNC L_BRACKET Expression R_BRACKET   
+            ;
+
 ```
 
 
@@ -192,6 +256,7 @@ Program: Program Statement
 * [x] 对逻辑坐标系重新定义，与习惯上的坐标系一致；
 * [x] 扩充语句类型，如允许用户
   * [x] 规定 图形颜色、
+  * [x] 规定线型
 * [x] 增加文本框，使得用户可以在图形中添加文字说明；
 * [x] 增加清图功能，使得图形可以具有简单的动画效果。 
 

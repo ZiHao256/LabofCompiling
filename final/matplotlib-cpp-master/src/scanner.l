@@ -19,7 +19,7 @@ struct Token token;
 
 
 number      [0-9]+(\.[0-9]*)?
-ws          [ \t]+
+ws          (" "|\t|\r|\f|\v)+
 newline     \n
 comments    "//"|"--"[^\n]*
 str         \<.*\>
@@ -98,7 +98,6 @@ str         \<.*\>
 "*"                         {printf("(MUL,\"*\",0.0,NULL) "); return (MUL);}
 "/"                         {printf("(DIV,\"/\",0.0,NULL) "); return (DIV);}
 
-(" "|\t|\n|\r|\f|\v)+       {;}
 
 .                           {return (ERRTOKEN);}
 
